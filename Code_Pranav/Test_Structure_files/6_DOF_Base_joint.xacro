@@ -1,0 +1,97 @@
+<?xml version="1.0"?>
+<robot name="allegro_hand_6dof" xmlns:xacro="http://ros.org/wiki/xacro">
+
+  <!-- =====================================
+       1) Parameters
+       ===================================== -->
+  <!-- how far the Allegro palm sits below its base_link -->
+  <xacro:property name="palm_offset"    value="0.095"/>
+  <!-- prismatic travel range (m) for each axis -->
+  <xacro:property name="slide_lower"    value="-0.1"/>
+  <xacro:property name="slide_upper"    value=" 0.1"/>
+  <xacro:property name="effort_trans"   value="10.0"/>
+  <xacro:property name="vel_trans"      value="0.05"/>
+
+  <!-- =====================================
+       2) “Floating” 6‐DOF chain
+       ===================================== -->
+  <!-- Root (world) -->
+  <link name="hand_root"/>
+
+  <!-- X‐translation -->
+  <link name="trans_x_link"/>
+  <joint name="trans_x_joint" type="prismatic">
+    <parent link="hand_root"/>
+    <child  link="trans_x_link"/>
+    <origin xyz="0 0 0" rpy="0 0 0"/>
+    <axis  xyz="1 0 0"/>
+    <limit lower="${slide_lower}" upper="${slide_upper}"
+           effort="${effort_trans}" velocity="${vel_trans}"/>
+  </joint>
+
+  <!-- Y‐translation -->
+  <link name="trans_y_link"/>
+  <joint name="trans_y_joint" type="prismatic">
+    <parent link="trans_x_link"/>
+    <child  link="trans_y_link"/>
+    <origin xyz="0 0 0" rpy="0 0 0"/>
+    <axis  xyz="0 1 0"/>
+    <limit lower="${slide_lower}" upper="${slide_upper}"
+           effort="${effort_trans}" velocity="${vel_trans}"/>
+  </joint>
+
+  <!-- Z‐translation -->
+  <link name="trans_z_link"/>
+  <joint name="trans_z_joint" type="prismatic">
+    <parent link="trans_y_link"/>
+    <child  link="trans_z_link"/>
+    <origin xyz="0 0 0" rpy="0 0 0"/>
+    <axis  xyz="0 0 1"/>
+    <limit lower="${slide_lower}" upper="${slide_upper}"
+           effort="${effort_trans}" velocity="${vel_trans}"/>
+  </joint>
+
+  <!-- Roll about X -->
+  <link name="rot_x_link"/>
+  <joint name="rot_x_joint" type="continuous">
+    <parent link="trans_z_link"/>
+    <child  link="rot_x_link"/>
+    <origin xyz="0 0 0" rpy="0 0 0"/>
+    <axis  xyz="1 0 0"/>
+  </joint>
+
+  <!-- Pitch about Y -->
+  <link name="rot_y_link"/>
+  <joint name="rot_y_joint" type="continuous">
+    <parent link="rot_x_link"/>
+    <child  link="rot_y_link"/>
+    <origin xyz="0 0 0" rpy="0 0 0"/>
+    <axis  xyz="0 1 0"/>
+  </joint>
+
+  <!-- Yaw about Z -->
+  <link name="rot_z_link"/>
+  <joint name="rot_z_joint" type="continuous">
+    <parent link="rot_y_link"/>
+    <child  link="rot_z_link"/>
+    <origin xyz="0 0 0" rpy="0 0 0"/>
+    <axis  xyz="0 0 1"/>
+  </joint>
+
+
+  <!-- =====================================
+       3) Include Allegro + DIGIT URDF
+       ===================================== -->
+  <xacro:include filename="/home/pranav/Space_touch/examples/allegro_hand_description/allegro_hand_description_left_digit.urdf"/>
+
+  <!-- =====================================
+       4) Mount the hand to the 6‐DOF chain
+       ===================================== -->
+  <joint name="mount_hand" type="fixed">
+    <parent link="rot_z_link"/>
+    <child  link="base_link"/>
+    <!-- lift the hand so the palm clears the mount -->
+    <origin xyz="0 0 ${palm_offset}" rpy="0 0 0"/>
+  </joint>
+
+</robot>

@@ -5,7 +5,7 @@
 <!-- allegro_hand_description_left.xacro (SimLab, https://github.com/simlabrobotics/allegro_hand_ros) --> 
 
 <!-- DIGIT (Facebook. Inc., https://digit.ml) -->
-
+<!-- MODIFIED By Pranav  -->
 <!-- =================================================================================== -->
 <robot name="allegro_hand_left" xmlns:xacro="http://www.ros.org/wiki/xacro">
   <!--
@@ -45,6 +45,11 @@ and one fixed link will be added for the tip. -->
         <box size="0.0408 0.1130 0.095"/>
       </geometry>
     </collision>
+    <inertial>
+    <origin xyz="0 0 0" rpy="0 0 0"/>
+    <mass value="30.0"/>  <!-- Example: Set a realistic mass in kg -->
+    <inertia ixx="0.001" ixy="0" ixz="0" iyy="0.001" iyz="0" izz="0.001" />
+  </inertial>
   </link>
   <!-- ============================================================================= -->
   <!-- FINGERS -->
@@ -66,7 +71,8 @@ and one fixed link will be added for the tip. -->
   </link>
   <joint name="joint_8.0" type="revolute">
     <axis xyz="0 0 1"/>
-    <limit effort="0" lower="-0.47" upper="0.47" velocity="0"/>
+    <!-- allow ±1 rad and up to 5 N·m torque -->
+    <limit lower="-1.000" upper="1.000" effort="5.0" velocity="10.0"/>
     <parent link="base_link"/>
     <child link="link_8.0"/>
     <origin rpy="-0.08726646255 0 0" xyz="0 0.0435 -0.001542"/>
@@ -86,7 +92,7 @@ and one fixed link will be added for the tip. -->
     </collision>
   </link>
   <joint name="joint_9.0" type="revolute">
-    <limit effort="0" lower="-0.196" upper="1.61" velocity="0"/>
+    <limit lower="-1.000" upper="1.000" effort="5.0" velocity="10.0"/>
     <axis xyz="0 1 0"/>
     <parent link="link_8.0"/>
     <child link="link_9.0"/>
@@ -108,7 +114,7 @@ and one fixed link will be added for the tip. -->
   </link>
   <joint name="joint_10.0" type="revolute">
     <axis xyz="0 1 0"/>
-    <limit effort="0" lower="-0.174" upper="1.709" velocity="0"/>
+    <limit lower="-1.000" upper="1.000" effort="5.0" velocity="10.0"/>
     <parent link="link_9.0"/>
     <child link="link_10.0"/>
     <origin xyz="0 0 0.054"/>
@@ -129,7 +135,7 @@ and one fixed link will be added for the tip. -->
   </link>
   <joint name="joint_11.0" type="revolute">
     <axis xyz="0 1 0"/>
-    <limit effort="0" lower="-0.227" upper="1.618" velocity="0"/>
+    <limit lower="-1.000" upper="1.000" effort="5.0" velocity="10.0"/>
     <parent link="link_10.0"/>
     <child link="link_11.0"/>
     <origin xyz="0 0 0.0384"/>
@@ -170,7 +176,8 @@ and one fixed link will be added for the tip. -->
   </link>
   <joint name="joint_4.0" type="revolute">
     <axis xyz="0 0 1"/>
-    <limit effort="0" lower="-0.47" upper="0.47" velocity="0"/>
+     <!-- allow ±1 rad and up to 5 N·m torque -->
+    <limit lower="-1.000" upper="1.000" effort="5.0" velocity="10.0"/>
     <parent link="base_link"/>
     <child link="link_4.0"/>
     <origin rpy="0.0 0 0" xyz="0 0 0.0007"/>
@@ -190,7 +197,7 @@ and one fixed link will be added for the tip. -->
     </collision>
   </link>
   <joint name="joint_5.0" type="revolute">
-    <limit effort="0" lower="-0.196" upper="1.61" velocity="0"/>
+    <limit lower="-1.000" upper="1.000" effort="5.0" velocity="10.0"/>
     <axis xyz="0 1 0"/>
     <parent link="link_4.0"/>
     <child link="link_5.0"/>
@@ -212,7 +219,7 @@ and one fixed link will be added for the tip. -->
   </link>
   <joint name="joint_6.0" type="revolute">
     <axis xyz="0 1 0"/>
-    <limit effort="0" lower="-0.174" upper="1.709" velocity="0"/>
+    <limit lower="-1.000" upper="1.000" effort="5.0" velocity="10.0"/>
     <parent link="link_5.0"/>
     <child link="link_6.0"/>
     <origin xyz="0 0 0.054"/>
@@ -233,7 +240,7 @@ and one fixed link will be added for the tip. -->
   </link>
   <joint name="joint_7.0" type="revolute">
     <axis xyz="0 1 0"/>
-    <limit effort="0" lower="-0.227" upper="1.618" velocity="0"/>
+    <limit lower="-1.000" upper="1.000" effort="5.0" velocity="10.0"/>
     <parent link="link_6.0"/>
     <child link="link_7.0"/>
     <origin xyz="0 0 0.0384"/>
@@ -274,7 +281,8 @@ and one fixed link will be added for the tip. -->
   </link>
   <joint name="joint_0.0" type="revolute">
     <axis xyz="0 0 1"/>
-    <limit effort="0" lower="-0.47" upper="0.47" velocity="0"/>
+    <!-- allow ±1 rad and up to 5 N·m torque -->
+    <limit lower="-1.000" upper="1.000" effort="5.0" velocity="10.0"/>
     <parent link="base_link"/>
     <child link="link_0.0"/>
     <origin rpy="0.08726646255 0 0" xyz="0 -0.0435 -0.001542"/>
@@ -294,7 +302,7 @@ and one fixed link will be added for the tip. -->
     </collision>
   </link>
   <joint name="joint_1.0" type="revolute">
-    <limit effort="0" lower="-0.196" upper="1.61" velocity="0"/>
+    <limit lower="-1.000" upper="1.000" effort="5.0" velocity="10.0"/>
     <axis xyz="0 1 0"/>
     <parent link="link_0.0"/>
     <child link="link_1.0"/>
@@ -316,7 +324,7 @@ and one fixed link will be added for the tip. -->
   </link>
   <joint name="joint_2.0" type="revolute">
     <axis xyz="0 1 0"/>
-    <limit effort="0" lower="-0.174" upper="1.709" velocity="0"/>
+    <limit lower="-1.000" upper="1.000" effort="5.0" velocity="10.0"/>
     <parent link="link_1.0"/>
     <child link="link_2.0"/>
     <origin xyz="0 0 0.054"/>
@@ -337,7 +345,7 @@ and one fixed link will be added for the tip. -->
   </link>
   <joint name="joint_3.0" type="revolute">
     <axis xyz="0 1 0"/>
-    <limit effort="0" lower="-0.227" upper="1.618" velocity="0"/>
+    <limit lower="-1.000" upper="1.000" effort="5.0" velocity="10.0"/>
     <parent link="link_2.0"/>
     <child link="link_3.0"/>
     <origin xyz="0 0 0.0384"/>
@@ -406,7 +414,8 @@ and one fixed link will be added for the tip. -->
   </link>
   <joint name="joint_12.0" type="revolute">
     <axis xyz="+1 0 0"/>
-    <limit effort="0" lower="0.263" upper="1.396" velocity="0"/>
+    <!-- give back full ±1 rad travel and 5 N·m torque -->
+    <limit lower="-1.000" upper="1.000" effort="5.0" velocity="10.0"/>
     <parent link="base_link"/>
     <child link="link_12.0"/>
     <origin rpy="0 -1.65806278845 1.5707963259" xyz="-0.0182 -0.019333 -0.045987"/>
@@ -429,7 +438,8 @@ and one fixed link will be added for the tip. -->
   </link>
   <joint name="joint_13.0" type="revolute">
     <axis xyz="0 0 -1"/>
-    <limit effort="0" lower="-0.105" upper="1.163" velocity="0"/>
+<!-- give back full ±1 rad travel and 5 N·m torque -->
+    <limit lower="-1.000" upper="1.000" effort="5.0" velocity="10.0"/>  
     <parent link="link_12.0"/>
     <child link="link_13.0"/>
     <!-- RIGHT -->
@@ -454,7 +464,8 @@ and one fixed link will be added for the tip. -->
   </link>
   <joint name="joint_14.0" type="revolute">
     <axis xyz="0 1 0"/>
-    <limit effort="0" lower="-0.189" upper="1.644" velocity="0"/>
+    <!-- give back full ±1 rad travel and 5 N·m torque -->
+    <limit lower="-1.000" upper="1.000" effort="5.0" velocity="10.0"/>
     <parent link="link_13.0"/>
     <child link="link_14.0"/>
     <origin xyz="0 0 0.0177"/>
@@ -476,7 +487,8 @@ and one fixed link will be added for the tip. -->
   </link>
   <joint name="joint_15.0" type="revolute">
     <axis xyz="0 1 0"/>
-    <limit effort="0" lower="-0.162" upper="1.719" velocity="0"/>
+    <!-- give back full ±1 rad travel and 5 N·m torque -->
+    <limit lower="-1.000" upper="1.000" effort="5.0" velocity="10.0"/>
     <parent link="link_14.0"/>
     <child link="link_15.0"/>
     <origin xyz="0 0 0.0514"/>

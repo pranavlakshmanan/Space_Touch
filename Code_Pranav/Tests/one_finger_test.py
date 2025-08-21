@@ -1,67 +1,64 @@
-# one_finger_example.py
-# Copyright (c) Facebook, Inc. and its affiliates.
-# This source code is licensed under the MIT license found in the
-# LICENSE file in the root directory of this source tree.
-
-import time
+#!/usr/bin/env python3
+import os
+import cv2
 import pybullet as p
-import pybullet_data
-from tacto.sensor import Sensor, get_digit_config_path
+import pybulletX as px
+import tacto
 
-# 1) Launch PyBullet
-p.connect(p.GUI)
-p.setGravity(0, 0, -9.81)
-p.setAdditionalSearchPath(pybullet_data.getDataPath())
+# paths
+sphere_urdf  = "/home/pranav/Space_touch/examples/objects/sphere_small.urdf"
+hand_urdf    = "/home/pranav/Space_touch/examples/allegro_hand_description/allegro_hand_description_left_digit.urdf"
 
-# 2) Load your one‑finger Allegro + DIGIT URDF
-hand_urdf = "/home/pranav/tacto/examples/allegro_hand_description/allegro_hand_description_left.urdf"
-hand_id = p.loadURDF(hand_urdf,
-                    basePosition=[0, 0, 0.15],
-                    useFixedBase=True)
+def main():
+    # 1) Load DIGIT background
+    bg = cv2.imread("examples/conf/bg_digit_240_320.jpg")
 
-# 3) Create the TACTO sensor
-sensor = Sensor(
-    width=160,
-    height=120,
-    config_path=get_digit_config_path(),
-    visualize_gui=True,
-    show_depth=True,
-    cid=0,
-)
+    # 2) Create TACTO Sensor
+    sensor = tacto.Sensor(
+        width=120,
+        height=160,
+        background=bg,
+        config_path=tacto.get_digit_config_path(),
+    )
 
-# 4) Tell TACTO about your hand so it mirrors the scene
-class DummyBody:
-    pass
+    # 3) Init PyBullet + camera view
+    px.init()
+    p.resetDebugVisualizerCamera(
+        cameraDistance=0.20,
+        cameraYaw=90,
+        cameraPitch=-45,
+        cameraTargetPosition=[0, 0, 0],
+    )
 
-body = DummyBody()
-body.urdf_path = hand_urdf
-body.id = hand_id
-body.global_scaling = 1.0
-sensor.add_body(body)
+    # 4) Spawn your Allegro hand URDF
+    gripper = px.Body(
+        urdf_path=hand_urdf,
+        base_position=[0, 0, 0.18],
+        base_orientation=[0, 0, 0, 1],
+        use_fixed_base=True,
+    )
 
-# 5) Attach the DIGIT camera to your finger’s tip link
-#    (print joint names to find the right index)
-for i in range(-1, p.getNumJoints(hand_id)):
-    name = p.getJointInfo(hand_id, i)[12].decode()
-    print(f"link {i}: {name}")
-# Suppose the tip link is index 9:
-TIP_LINK_IDX = 9
-sensor.add_camera(obj_id=hand_id, link_ids=TIP_LINK_IDX)
+    # 5) Attach DIGIT camera to the base link (change link_ids if needed)
+    sensor.add_camera(gripper.id, link_ids=[0])
+    # print(gripper.id)
 
-# 6) Spawn a small red sphere
-sphere_col = p.createCollisionShape(p.GEOM_SPHERE, radius=0.02)
-sphere_vis = p.createVisualShape(p.GEOM_SPHERE, radius=0.02,
-                                 rgbaColor=[1, 0, 0, 1])
-sphere_id = p.createMultiBody(
-    baseMass=0.01,
-    baseCollisionShapeIndex=sphere_col,
-    baseVisualShapeIndex=sphere_vis,
-    basePosition=[0.05, 0, 0.25]
-)
+    # 6) Spawn a sphere in front of the fingers
+    sphere = px.Body(
+        urdf_path=sphere_urdf,
+        base_position=[0.05, 0, 0.3],
+        global_scaling=0.15,
+        use_fixed_base=False,
+    )
+    sensor.add_body(sphere)
 
-# 7) Main loop: step physics and render tactile images
-while True:
-    p.stepSimulation()
+    # 7) Step simulation so it drops
+    for _ in range(200):
+        p.stepSimulation()
+
+    # 8) Render and display
     colors, depths = sensor.render()
     sensor.updateGUI(colors, depths)
-    time.sleep(1/240)
+    cv2.waitKey(0)
+
+if __name__ == "__main__":
+    main()

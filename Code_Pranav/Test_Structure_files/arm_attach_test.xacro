@@ -1,0 +1,88 @@
+<?xml version="1.0"?>
+<robot name="allegro_hand_on_wrist" xmlns:xacro="http://ros.org/wiki/xacro">
+
+  <!-- ================================
+       1) Parameters
+       ================================ -->
+  <!-- total cylinder length -->
+  <xacro:property name="arm_length"   value="0.6"/>
+  <!-- cylinder radius -->
+  <xacro:property name="arm_radius"   value="0.2"/>
+  <!-- how far below base_link the palm sits -->
+  <xacro:property name="palm_offset"  value="0.13"/>
+  <!-- half the cylinder; i.e. its “top” in link‐coords -->
+  <xacro:property name="half_length"  value="${arm_length/2}"/>
+
+  <!-- ================================
+       2) Forearm cylinder
+       ================================ -->
+  <link name="arm_base"/>
+  <link name="arm_link">
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+        <cylinder length="${arm_length}" radius="${arm_radius}"/>
+      </geometry>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+        <cylinder length="${arm_length}" radius="${arm_radius}"/>
+      </geometry>
+    </collision>
+  </link>
+  <!-- keep the cylinder rigidly attached to world/base -->
+  <joint name="arm_to_base" type="fixed">
+    <parent link="arm_base"/>
+    <child  link="arm_link"/>
+    <origin xyz="0 0 0" rpy="0 0 0"/>
+  </joint>
+
+  <!-- ================================
+       3) 3-DOF wrist: roll → pitch → yaw
+       ================================ -->
+  <!-- roll about X -->
+  <link name="wrist_roll_link"/>
+  <joint name="wrist_roll_joint" type="continuous">
+    <parent link="arm_link"/>
+    <child  link="wrist_roll_link"/>
+    <!-- pivot at the *top* of the cylinder -->
+    <origin xyz="0 0 ${half_length}" rpy="0 0 0"/>
+    <axis  xyz="1 0 0"/>
+  </joint>
+
+  <!-- pitch about Y -->
+  <link name="wrist_pitch_link"/>
+  <joint name="wrist_pitch_joint" type="continuous">
+    <parent link="wrist_roll_link"/>
+    <child  link="wrist_pitch_link"/>
+    <!-- same pivot point -->
+    <origin xyz="0 0 0" rpy="0 0 0"/>
+    <axis  xyz="0 1 0"/>
+  </joint>
+
+  <!-- yaw about Z -->
+  <link name="wrist_yaw_link"/>
+  <joint name="wrist_yaw_joint" type="continuous">
+    <parent link="wrist_pitch_link"/>
+    <child  link="wrist_yaw_link"/>
+    <origin xyz="0 0 0" rpy="0 0 0"/>
+    <axis  xyz="0 0 1"/>
+  </joint>
+
+  <!-- ================================
+       4) Plug in your Allegro + DIGIT URDF
+       ================================ -->
+  <xacro:include filename="/home/pranav/Space_touch/examples/allegro_hand_description/allegro_hand_description_left_digit.urdf"/>
+
+  <!-- ================================
+       5) Mount the hand
+       ================================ -->
+  <joint name="mount_hand_to_wrist" type="fixed">
+    <parent link="wrist_yaw_link"/>
+    <child  link="base_link"/>
+    <!-- lift the Allegro base_link up so the palm just sits on the cylinder -->
+    <origin xyz="0 0 ${palm_offset}" rpy="0 0 0"/>
+  </joint>
+
+</robot>

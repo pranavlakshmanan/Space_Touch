@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<robot name="myfirst">
+  <link name="base_link"/>
+  <link name="box">
+    <visual>
+      <geometry>
+        <cylinder length="0.6" radius="0.2"/>
+      </geometry>
+    </visual>
+  </link>
+
+   <joint name="base_to_box" type="floating">
+      <parent link="base_link"/>
+      <child link="box"/>
+      <origin xyz="0 0 0.3" rpy="0 0 0"/>
+   </joint>
+   
+</robot>

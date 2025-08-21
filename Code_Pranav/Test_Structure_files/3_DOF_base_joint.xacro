@@ -1,0 +1,62 @@
+<?xml version="1.0"?>
+<robot name="allegro_hand_with_wrist" xmlns:xacro="http://ros.org/wiki/xacro">
+
+  <!-- =====================================
+       1) Parameters
+       ===================================== -->
+  <!-- How far the Allegro palm sits below its base_link frame -->
+  <xacro:property name="palm_offset" value="0.095"/>
+
+  <!-- =====================================
+       2) Dummy root link for the wrist chain
+       ===================================== -->
+  <link name="wrist_root"/>
+
+  <!-- =====================================
+       3) 3-DOF wrist joints directly on the hand
+       Roll → Pitch → Yaw
+       ===================================== -->
+  <!-- Roll about X -->
+  <link name="wrist_roll_link"/>
+  <joint name="wrist_roll_joint" type="continuous">
+    <parent link="wrist_root"/>
+    <child  link="wrist_roll_link"/>
+    <origin xyz="0 0 0"    rpy="0 0 0"/>
+    <axis  xyz="1 0 0"/>
+  </joint>
+
+  <!-- Pitch about Y -->
+  <link name="wrist_pitch_link"/>
+  <joint name="wrist_pitch_joint" type="continuous">
+    <parent link="wrist_roll_link"/>
+    <child  link="wrist_pitch_link"/>
+    <origin xyz="0 0 0"    rpy="0 0 0"/>
+    <axis  xyz="0 1 0"/>
+  </joint>
+
+  <!-- Yaw about Z -->
+  <link name="wrist_yaw_link"/>
+  <joint name="wrist_yaw_joint" type="continuous">
+    <parent link="wrist_pitch_link"/>
+    <child  link="wrist_yaw_link"/>
+    <origin xyz="0 0 0"    rpy="0 0 0"/>
+    <axis  xyz="0 0 1"/>
+  </joint>
+
+  <!-- =====================================
+       4) Include the Allegro + DIGIT URDF
+       ===================================== -->
+  
+  <xacro:include filename="/home/pranav/Space_touch/examples/allegro_hand_description/allegro_hand_description_left_digit.urdf"/>
+
+  <!-- =====================================
+       5) Bolt the hand’s base_link to the wrist
+       ===================================== -->
+  <joint name="mount_hand_to_wrist" type="fixed">
+    <parent link="wrist_yaw_link"/>
+    <child  link="base_link"/>
+    <!-- lift the hand so the palm just clears the mount point -->
+    <origin xyz="0 0 ${palm_offset}" rpy="0 0 0"/>
+  </joint>
+
+</robot>

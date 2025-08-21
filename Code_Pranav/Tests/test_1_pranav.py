@@ -5,7 +5,7 @@ import pybulletX as px
 import os, tacto
 
 
-pkg_examples = "/home/pranav/tacto/examples/objects/"
+pkg_examples = "/home/pranav/Space_touch/examples/objects/"
 sphere_urdf  = os.path.join(pkg_examples, "sphere_small.urdf")
 
 def main():
@@ -41,7 +41,7 @@ def main():
     # 5) Add a small sphere to make contact
     sphere = px.Body(
         urdf_path=sphere_urdf,
-        base_position=[-0.02, 0, 0.06],
+        base_position=[-0.02, 0.0, 0.1],
         global_scaling=0.15,
         use_fixed_base=False,
     )
