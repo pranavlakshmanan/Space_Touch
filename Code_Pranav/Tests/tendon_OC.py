@@ -266,7 +266,7 @@ class TendonVelocityController:
 
 def main():
     # 1) Initialize PyBulletX (opens the GUI once)
-    px.init()
+    px.init(mode=p.GUI)
 
     # 2) Standard PyBullet setup
     p.setAdditionalSearchPath(pybullet_data.getDataPath())

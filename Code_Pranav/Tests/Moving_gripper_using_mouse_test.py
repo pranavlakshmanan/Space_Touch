@@ -21,7 +21,7 @@ def main():
     )
 
     # ─── 3) Start PyBullet GUI & real-time mode ────────────────────────
-    px.init()                    # connect, set gravity, solver defaults
+    px.init(mode=p.GUI)                    # connect, set gravity, solver defaults
     p.setRealTimeSimulation(1)   # run at ~240 Hz automatically
     p.resetDebugVisualizerCamera(
         cameraDistance=0.30,

@@ -4,7 +4,7 @@
 # LICENSE file in the root directory of this source tree.
 
 import torch
-import gym
+import gymnasium as gym
 import sawyer_gripper_env  # noqa: F401
 
 

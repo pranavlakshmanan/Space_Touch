@@ -1,4 +1,12 @@
 #!/usr/bin/env python3
+# Fix for attrdict Python 3.13 compatibility
+import collections.abc
+import collections
+collections.Mapping = collections.abc.Mapping
+collections.MutableMapping = collections.abc.MutableMapping
+collections.Sequence = collections.abc.Sequence
+collections.MutableSequence = collections.abc.MutableSequence
+
 import time
 import numpy as np
 import cv2
@@ -10,8 +18,8 @@ import tacto
 # Tendon-based hand movement with torque control and reference axis
 
 # ─── PARAMETERS ────────────────────────────────────────────────────────────
-URDF_HAND    = "/home/pranav/Space_touch/examples/allegro_hand_description/allegro_hand_description_left_digit.urdf"
-URDF_SPHERE  = "/home/pranav/Space_touch/examples/objects/sphere_small.urdf"
+URDF_HAND    = "/home/pralak/Space_touch/examples/allegro_hand_description/allegro_hand_description_left_digit_fixed.urdf"
+URDF_SPHERE  = "/home/pralak/Space_touch/examples/objects/sphere_small.urdf"
 
 # Tendon control parameters
 TENDON_FORCE_GAIN = 10.0   # Base gain for tendon force to torque conversion
@@ -266,7 +274,7 @@ class TendonController:
 
 def main():
     # 1) Initialize PyBulletX (opens the GUI once)
-    px.init()
+    px.init(mode=p.GUI)
 
     # 2) Standard PyBullet setup
     p.setAdditionalSearchPath(pybullet_data.getDataPath())
@@ -276,10 +284,10 @@ def main():
     p.resetDebugVisualizerCamera(0.6, 60, -30, [0, 0, 0.25])
 
     # 3) Initialize Tacto
-    bg = cv2.imread("examples/conf/bg_digit_240_320.jpg")
+    bg = cv2.imread("/home/pralak/Space_touch/examples/conf/bg_digit_240_320.jpg")
     sensor = tacto.Sensor(120, 160,
                          background=bg,
-                         config_path=tacto.get_digit_config_path())
+                         config_path="/home/pralak/Space_touch/tacto/config_digit.yml")
 
     # 4) Load hand with a dynamic base
     hand = px.Body(urdf_path=URDF_HAND,
@@ -306,7 +314,6 @@ def main():
     for i in range(hand.num_joints):
         jn = hand.get_joint_info(i).joint_name.decode()
         if jn.endswith("_tip") and jn in TIP_LABELS:
-            sensor.add_camera(hand.id, link_ids=[i])
             pos, _ = hand.get_link_state(i)[:2]
             tip_entries.append({
                 "joint":    jn,
@@ -314,11 +321,16 @@ def main():
                 "x":        pos[0],
                 "cam_idx":  len(tip_entries)
             })
+            # Add camera to sensor for this fingertip
+            sensor.add_camera(hand.id, [i])
+            
             sph = px.Body(urdf_path=URDF_SPHERE,
                           base_position=[pos[0], pos[1], pos[2]+0.05],
                           global_scaling=0.15,
                           use_fixed_base=False)
             sensor.add_body(sph)
+    
+    print(f"Initialized {len(tip_entries)} fingertip cameras")
 
     # 8) Let spheres settle
     t0 = time.time()
@@ -330,6 +342,17 @@ def main():
     tip_entries.sort(key=lambda e: e["x"])
     cam_order = [e["cam_idx"] for e in tip_entries]
     labels    = [TIP_LABELS[e["joint"]] for e in tip_entries]
+    
+    print(f"Camera order: {cam_order}")
+    print(f"Labels: {labels}")
+    
+    if not cam_order:
+        print("WARNING: No cameras initialized. Check that fingertip joints were found.")
+        print("Available joints with '_tip':")
+        for i in range(hand.num_joints):
+            jn = hand.get_joint_info(i).joint_name.decode()
+            if jn.endswith("_tip"):
+                print(f"  - {jn} (in TIP_LABELS: {jn in TIP_LABELS})")
 
     # 10) Prepare OpenCV windows
     title_c = "Tacto Color (L→R: " + " | ".join(labels) + ")"
@@ -398,36 +421,48 @@ def main():
 
         # f) Tacto render
         colors, depths = sensor.render()
+        
+        # Check if we have any cameras/colors
+        if not colors or not cam_order:
+            print("No cameras or colors available. Skipping visualization.")
+            continue
 
         # g) Color mosaic + labels
-        ordered_c = [colors[i] for i in cam_order]
-        mosaic_c  = np.concatenate(ordered_c, axis=1)
-        w = mosaic_c.shape[1] // len(labels)
-        for idx, lab in enumerate(labels):
-            cv2.putText(mosaic_c, lab, (idx*w+5, 15),
-                        cv2.FONT_HERSHEY_SIMPLEX, 0.5, (255,255,255), 1)
-        cv2.imshow(title_c, mosaic_c)
+        ordered_c = [colors[i] for i in cam_order if i < len(colors)]
+        if ordered_c:
+            mosaic_c  = np.concatenate(ordered_c, axis=1)
+            w = mosaic_c.shape[1] // len(labels) if labels else mosaic_c.shape[1]
+            for idx, lab in enumerate(labels):
+                cv2.putText(mosaic_c, lab, (idx*w+5, 15),
+                            cv2.FONT_HERSHEY_SIMPLEX, 0.5, (255,255,255), 1)
+            cv2.imshow(title_c, mosaic_c)
 
-        # h) Depth+mask mosaic + labels
-        spans = []
-        mask_mosaic = None
-        for d in [depths[i] for i in cam_order]:
-            norm = (d - d.min()) / (d.max() - d.min() + 1e-6)
-            spans.append(norm.max() - norm.min())
-            mask = (norm < THRESHOLD).astype(np.uint8)*255
-            mask_mosaic = mask if mask_mosaic is None else np.concatenate([mask_mosaic, mask], axis=1)
-        for idx, lab in enumerate(labels):
-            cv2.putText(mask_mosaic, lab, (idx*w+5, 15),
-                        cv2.FONT_HERSHEY_SIMPLEX, 0.5, (0,0,0), 1)
-        cv2.imshow(title_d, mask_mosaic)
+            # h) Depth+mask mosaic + labels
+            spans = []
+            mask_mosaic = None
+            ordered_d = [depths[i] for i in cam_order if i < len(depths)]
+            for d in ordered_d:
+                norm = (d - d.min()) / (d.max() - d.min() + 1e-6)
+                spans.append(norm.max() - norm.min())
+                mask = (norm < THRESHOLD).astype(np.uint8)*255
+                mask_mosaic = mask if mask_mosaic is None else np.concatenate([mask_mosaic, mask], axis=1)
+            
+            if mask_mosaic is not None:
+                for idx, lab in enumerate(labels):
+                    cv2.putText(mask_mosaic, lab, (idx*w+5, 15),
+                                cv2.FONT_HERSHEY_SIMPLEX, 0.5, (0,0,0), 1)
+                cv2.imshow(title_d, mask_mosaic)
 
-        # i) Print deformation spans and tendon forces
-        print("Depth spans:", ["%.3f"%s for s in spans])
-        print("Tendon forces:", {f: "%.2f"%p for f, p in tendon_forces.items()})
-        
-        # Debug: Show computed torques for first few joints
-        if len(torques) > 4:
-            print("Sample torques:", ["%.2f"%torques[i] for i in range(4)])
+            # i) Print deformation spans and tendon forces
+            if 'spans' in locals():
+                print("Depth spans:", ["%.3f"%s for s in spans])
+            print("Tendon forces:", {f: "%.2f"%p for f, p in tendon_forces.items()})
+            
+            # Debug: Show computed torques for first few joints
+            if len(torques) > 4:
+                print("Sample torques:", ["%.2f"%torques[i] for i in range(4)])
+        else:
+            print("No visualization data available - check camera initialization")
 
         # j) Exit on Esc
         if cv2.waitKey(1) == 27:

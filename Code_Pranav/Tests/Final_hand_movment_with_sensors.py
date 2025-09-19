@@ -10,8 +10,8 @@ import tacto
 #  Final Complete hand movement with sensors code
 
 # ─── PARAMETERS ────────────────────────────────────────────────────────────
-URDF_HAND    = "/home/pranav/Space_touch/examples/allegro_hand_description/allegro_hand_description_left_digit.urdf"
-URDF_SPHERE  = "/home/pranav/Space_touch/examples/objects/sphere_small.urdf"
+URDF_HAND    = "/home/pralak/Space_touch/examples/allegro_hand_description/allegro_hand_description_left_digit.urdf"
+URDF_SPHERE  = "/home/pralak/Space_touch/examples/objects/sphere_small.urdf"
 P_GAIN       = 50.0
 D_GAIN       = 2.0
 AMP_J        = 1.0      # joint swing amplitude (rad)
@@ -39,8 +39,8 @@ TIP_LABELS = {
 }
 
 def main():
-    # 1) Initialize PyBulletX (opens the GUI once)
-    px.init()
+    # 1) Initialize PyBulletX (opens the GUI once) - Enable GUI mode  
+    px.init(mode=p.GUI)
 
     # 2) Standard PyBullet setup
     p.setAdditionalSearchPath(pybullet_data.getDataPath())

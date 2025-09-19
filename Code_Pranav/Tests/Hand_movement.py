@@ -5,7 +5,7 @@ import pybullet as p
 import pybullet_data
 
 # ─── CONFIG ────────────────────────────────────────────────────────────────
-URDF_HAND   = "/home/pranav/Space_touch/examples/allegro_hand_description/allegro_hand_description_left_digit.urdf"
+URDF_HAND   = "/home/pralak/Space_touch/examples/allegro_hand_description/allegro_hand_description_left_digit.urdf"
 PLANE_URDF  = "plane.urdf"
 
 SIM_FPS     = 240

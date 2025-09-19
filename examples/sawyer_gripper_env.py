@@ -9,8 +9,8 @@ import logging
 import collections
 
 import cv2
-import gym
-from gym.envs.registration import register
+import gymnasium as gym
+from gymnasium.envs.registration import register
 
 import numpy as np
 import pybullet as p

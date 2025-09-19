@@ -5,8 +5,8 @@ import pybulletX as px
 import tacto
 
 # ─── PARAMETERS ────────────────────────────────────────────────────────────
-URDF_HAND   = "/home/pranav/Space_touch/examples/allegro_hand_description/allegro_hand_description_left_digit.urdf"
-URDF_SPHERE = "/home/pranav/Space_touch/examples/objects/sphere_small.urdf"
+URDF_HAND   = "/home/pralak/Space_touch/examples/allegro_hand_description/allegro_hand_description_left_digit.urdf"
+URDF_SPHERE = "/home/pralak/Space_touch/examples/objects/sphere_small.urdf"
 P_GAIN      = 50.0
 D_GAIN      = 2.0
 AMP         = 1.0
@@ -28,7 +28,7 @@ def main():
     bg = cv2.imread("examples/conf/bg_digit_240_320.jpg")
     sensor = tacto.Sensor(120,160, background=bg,
                          config_path=tacto.get_digit_config_path())
-    px.init(); p.setRealTimeSimulation(0)
+    px.init(mode=p.GUI); p.setRealTimeSimulation(0)
     p.setGravity(0,0,-9.81)
     p.setAdditionalSearchPath(pybullet_data.getDataPath())
     p.loadURDF("plane.urdf",[0,0,0],useFixedBase=True)

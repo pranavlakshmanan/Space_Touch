@@ -22,7 +22,7 @@ def main():
     )
 
     # 3) Init PyBullet + camera view
-    px.init()
+    px.init(mode=p.GUI)
     p.resetDebugVisualizerCamera(
         cameraDistance=0.20,
         cameraYaw=90,
