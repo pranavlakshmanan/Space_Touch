@@ -161,7 +161,7 @@ class V7Environment(VecEnv):
             'object_radius': 0.05,
             'safety_margin': 0.025,
             'object_hull_points': 32,
-            'hull_compute_freq': 24,  # 10Hz at 240Hz sim (good balance)
+            'hull_compute_freq': 12,  # V7.1: 20Hz at 240Hz sim (increased from 24/10Hz for faster feedback)
         })
         
         # PyBullet initialization
@@ -443,7 +443,7 @@ class V7Environment(VecEnv):
 
         # ADDED: Terminate if hand wanders too far (force learning to stay close)
         distance = info.get('distance_to_target', 0)
-        if distance > 0.25:  # 25cm - too far from target
+        if distance > 0.20:  # V7.1: 20cm (tightened from 25cm to force closer operation)
             done = True
 
         if (self.reward_calc.current_phase == 3 and
@@ -616,9 +616,9 @@ class V7CurriculumCallback(BaseCallback):
                 'mean_overlap': 0.00001,     # Average overlap > 10 cm³
                 'window_size': 1000,
             },
-            2: {  # Phase 2: Envelopment (90K-160K)
-                'min_steps': 60000,          # At least 60K in phase
-                'max_steps': 70000,          # Force advance at 70K (total 160K)
+            2: {  # Phase 2: Envelopment (90K-180K)
+                'min_steps': 80000,          # V7.1: At least 80K in phase (increased from 60K)
+                'max_steps': 90000,          # V7.1: Force advance at 90K (total 180K, increased from 70K/160K)
                 'mean_overlap': 0.0001,      # Average overlap > 100 cm³
                 'mean_distance': 0.20,       # Within 20cm
                 'window_size': 1000,
@@ -702,25 +702,33 @@ class V7CurriculumCallback(BaseCallback):
         old_phase = self.current_phase
         self.current_phase += 1
         self.phase_start_step = self.num_timesteps
-        
+
         self.training_env.env_method('update_phase', self.current_phase)
-        
+
+        # V7.1: Adaptive learning rate - reduce LR in Phase 2+ for stability
+        if self.current_phase >= 2:
+            new_lr = 1e-4  # Reduce from 3e-4 to 1e-4
+            self.model.learning_rate = new_lr
+            print(f"[Step {self.num_timesteps:,}] Adaptive LR: Learning rate reduced to {new_lr}")
+
         if wandb.run is not None:
             wandb.log({
                 'curriculum/phase': self.current_phase,
                 'curriculum/transition_step': self.num_timesteps,
+                'hyperparameters/learning_rate': float(self.model.learning_rate),  # V7.1: Log LR changes
             })
-        
+
         print(f"[Step {self.num_timesteps:,}] Phase {old_phase} → {self.current_phase}")
 
 
 class V6WandBCallback(BaseCallback):
     """Lightweight WandB logging"""
 
-    def __init__(self, log_freq=480, verbose=0):  # TIMING FIX: 480 is divisible by 24 (hull compute freq)
+    def __init__(self, log_freq=480, verbose=0):  # V7.1: 480 is divisible by 12 (new hull freq)
         super().__init__(verbose)
         self.log_freq = log_freq
         self.recent_overlaps_for_stats = []
+        self.recent_distances_for_stats = []  # V7.1: Track distances for mean calculation
         self.max_stats_history = 200  # Only keep 200 for rolling statistics
 
     def _on_step(self) -> bool:
@@ -731,10 +739,13 @@ class V6WandBCallback(BaseCallback):
             if infos and 'reward_info' in infos[0]:
                 info = infos[0]['reward_info']
                 self.recent_overlaps_for_stats.append(info.get('overlap_volume', 0))
+                self.recent_distances_for_stats.append(info.get('distance_to_target', 0))  # V7.1: Track distance
 
                 # Trim immediately
                 if len(self.recent_overlaps_for_stats) > self.max_stats_history:
                     self.recent_overlaps_for_stats = self.recent_overlaps_for_stats[-self.max_stats_history:]
+                if len(self.recent_distances_for_stats) > self.max_stats_history:
+                    self.recent_distances_for_stats = self.recent_distances_for_stats[-self.max_stats_history:]
 
             self._log_metrics()
 
@@ -754,8 +765,17 @@ class V6WandBCallback(BaseCallback):
         hand_vol_cm3 = info.get('hand_hull_volume', 0) * 1e6
         obj_vol_cm3 = info.get('object_hull_volume', 0) * 1e6
 
+        # V7.1: Calculate total reward from components
+        total_reward = (info.get('overlap_reward', 0) +
+                       info.get('proximity_reward', 0) +
+                       info.get('contact_penalty', 0) +
+                       info.get('clearance_reward', 0) +
+                       info.get('quality_reward', 0) +
+                       info.get('sustained_bonus', 0))
+
         log_dict = {
             'train/step': self.num_timesteps,
+            'reward/total': total_reward,  # V7.1: Added total reward
             'reward/overlap': info.get('overlap_reward', 0),
             'reward/proximity': info.get('proximity_reward', 0),
             'reward/contact_penalty': info.get('contact_penalty', 0),
@@ -770,10 +790,14 @@ class V6WandBCallback(BaseCallback):
             'state/phase': info.get('current_phase', 1),
         }
 
-        # Use the new variable name
+        # V7.1: Add mean statistics for both overlap and distance
         if self.recent_overlaps_for_stats:
             log_dict['stats/mean_overlap_cm3'] = np.mean(self.recent_overlaps_for_stats) * 1e6
             log_dict['stats/max_overlap_cm3'] = np.max(self.recent_overlaps_for_stats) * 1e6
+
+        if self.recent_distances_for_stats:
+            log_dict['stats/mean_distance'] = np.mean(self.recent_distances_for_stats)
+            log_dict['stats/std_distance'] = np.std(self.recent_distances_for_stats)
 
         wandb.log(log_dict)
 
@@ -782,19 +806,19 @@ class V6WandBCallback(BaseCallback):
 # Training Functions
 # =============================================================================
 
-def create_model(env, device='cuda'):
+def create_model(env, device='cuda', learning_rate=3e-4):
     """Create PPO model with tuned hyperparameters"""
     return PPO(
         "MlpPolicy",
         env,
-        learning_rate=3e-4,
-        n_steps=2048,
+        learning_rate=learning_rate,  # V7.1: Now configurable for adaptive LR
+        n_steps=4096,  # V7.1: Increased from 2048 for more stable learning
         batch_size=64,
         n_epochs=10,
         gamma=0.99,
         gae_lambda=0.95,
         clip_range=0.2,
-        ent_coef=0.001,  # REDUCED: 0.01 → 0.001 to reduce random exploration
+        ent_coef=0.005,  # V7.1: Increased from 0.001 to 0.005 for more exploration in Phase 2
         vf_coef=0.5,
         max_grad_norm=0.5,
         device=device,  # MEMORY FIX: Default to CPU to avoid GPU memory issues
@@ -815,6 +839,7 @@ def train(args):
         project="sc1-v7-curriculum",
         name=run_name,
         config={
+            'version': 'V7.1',
             'total_timesteps': args.timesteps,
             'algorithm': 'PPO',
             'curriculum_phases': 4,  # Phase 0-3
@@ -826,15 +851,29 @@ def train(args):
             'overlap_method': 'bbox_fast',
             'phase_0_steps': 30000,
             'phase_1_steps': 60000,
-            'phase_2_steps': 70000,
-            'phase_3_steps': 40000,
+            'phase_2_steps': 90000,  # V7.1: Extended from 70K
+            'phase_3_steps': 20000,  # V7.1: Reduced (total still 200K)
+            # V7.1 Hyperparameters
+            'learning_rate_phase_01': 3e-4,
+            'learning_rate_phase_23': 1e-4,  # Adaptive LR
+            'n_steps': 4096,  # Increased from 2048
+            'ent_coef': 0.005,  # Increased from 0.001
+            'hull_compute_freq_hz': 20,  # Increased from 10Hz
+            'distance_termination_m': 0.20,  # Tightened from 0.25m
+            # V7.1 Reward changes
+            'phase2_proximity_weight': 10.0,  # Added baseline (was 0.0)
+            'phase1_contact_penalty': -5.0,  # Strengthened from -2.0
+            'phase2_contact_penalty': -10.0,  # Strengthened from -5.0
+            'phase2_quality_weight': 5.0,  # Increased from 3.0
+            'overlap_tanh_scale': 75.0,  # Increased from 50.0
         },
-        tags=['v7', 'soft-capture', 'improved-curriculum', 'skill-isolation', '200k-optimized'],
+        tags=['v7.1', 'soft-capture', 'improved-curriculum', 'adaptive-lr', 'proximity-baseline'],
     )
 
-    print(f"Starting V7 training: {run_name}")
+    print(f"Starting V7.1 training: {run_name}")
     print(f"  Total steps: {args.timesteps:,}")
-    print(f"  Curriculum: Phase0(30K) → Phase1(60K) → Phase2(70K) → Phase3(40K)")
+    print(f"  Curriculum: Phase0(30K) → Phase1(60K) → Phase2(90K) → Phase3(20K)")
+    print(f"  Key V7.1 changes: Proximity baseline in Phase 2, Adaptive LR, Increased exploration")
     print(f"  Log dir: {log_dir}")
 
     env = V7Environment(vis=args.vis, max_steps=500)

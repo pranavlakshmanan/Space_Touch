@@ -86,17 +86,17 @@ class V7RewardCalculator:
                 'overlap_threshold': 0.000001,   # 1 cm³
                 'proximity_weight': 50.0,        # PRIMARY objective
                 'overlap_weight': 20.0,          # SECONDARY - awareness only
-                'contact_penalty': -2.0,         # Moderate
+                'contact_penalty': -5.0,         # Moderate (increased from -2.0 for V7.1)
                 'quality_weight': 1.0,           # Minimal
                 'success_overlap': 0.00001,      # 10 cm³ (just touching)
                 'success_distance': 0.15,        # Mean < 15cm
             },
             2: {  # Phase 2: ENVELOPMENT - Pure overlap learning
                 'overlap_threshold': 0.00001,    # 10 cm³ minimum
-                'proximity_weight': 0.0,         # REMOVED - force pure overlap
-                'overlap_weight': 500.0,         # SOLE primary objective
-                'contact_penalty': -5.0,         # Moderate - some contact ok
-                'quality_weight': 3.0,           # Reward finger spread
+                'proximity_weight': 10.0,        # V7.1: Small baseline (was 0.0) to prevent wandering
+                'overlap_weight': 500.0,         # SOLE primary objective (50:1 ratio)
+                'contact_penalty': -10.0,        # Stronger (increased from -5.0 for V7.1)
+                'quality_weight': 5.0,           # Reward finger spread (OPTIONAL: increased from 3.0 - uncomment to revert to 3.0)
                 'success_overlap': 0.0001,       # 100 cm³
                 'success_distance': 0.20,        # Within 20cm (termination prevents >25cm)
             },
@@ -350,7 +350,8 @@ class V7RewardCalculator:
 
         # Overlap reward (all phases, weight varies)
         overlap_cm3 = overlap * 1e6
-        overlap_reward = cfg['overlap_weight'] * np.tanh(overlap_cm3 / 50.0)
+        # V7.1: Changed tanh scaling from 50 to 75 to delay saturation (OPTIONAL - revert to 50.0 if needed)
+        overlap_reward = cfg['overlap_weight'] * np.tanh(overlap_cm3 / 75.0)
         rewards['overlap'] = overlap_reward
 
         # Contact penalty (all phases)
