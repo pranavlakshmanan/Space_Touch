@@ -1,0 +1,617 @@
+🔧 Creating convex hull envelopment environment...
+🔧 Initializing Convex Hull Envelopment Reward System...
+🔧 Initialized ConvexHullEnvelopmentReward:
+   Object radius: 0.05m
+   Safety margin: 0.025m
+   Starting phase: 1
+⚠️  Tactile sensor initialization failed: local variable 'e' referenced before assignment
+✅ Allegro hand spawned successfully
+🔧 Episode 0 Reset: Hand=(0.3018875841366359, 0.2195835977836016, 0.3), Target=[0.25, 0.15, 0.35]
+   Initial separation: 0.100m (✅)
+
+🔍 Initial Volume Check:
+
+🔍 HSI CALCULATION SUMMARY (#1):
+   Hand hull volume: 0.000028678 m³ (28.6781 cm³)
+   Object hull volume: 0.001447041 m³ (1447.0409 cm³)
+   Separation distance: 0.094466m (94.5mm)
+   Method: Half-Space Intersection (replacing broken Trimesh)
+   Initial Overlap:     0.0000 cm³ (0.00% of object)
+   Initial Hand Hull:   28.6781 cm³
+   Initial Object Hull: 1447.0409 cm³
+   Initial Reward:      32.4897
+   Hull Valid:          Hand=True, Object=True
+🧠 Creating PPO model...
+Using cpu device
+🔧 Enhanced WandB Callback Initialized:
+   📊 Metric logging: every 50 steps
+   📸 Visualization upload: every 500 steps
+🏋️  Starting 3-phase curriculum training with cpu device...
+💾 Checkpoints every 100,000 steps
+📚 Curriculum phases: 3
+   Phase 1 (0-300K): Approach & Formation
+   Phase 2 (300K-650K): Envelopment with Quality
+   Phase 3 (650K-1M): Precision Soft-Capture
+
+📊 Volume Tracking:
+   Console output: Every 1,000 steps
+   WandB metrics: Every 50 steps in 'hull_cm3/' group
+   Watch these WandB metrics for best visibility:
+     - hull_cm3/overlap_volume (target: 0.01-1.0 cm³)
+     - hull_cm3/hand_volume (typical: 0.01-0.1 cm³)
+     - hull_ratios/overlap_percentage (target: 10-70%)
+
+📈 Starting comprehensive training for 1,000,000 timesteps...
+🔧 Episode 0 Reset: Hand=(0.27523562166351, 0.07777825085774588, 0.30659804137351987), Target=[0.24573936480886704, 0.14817725672068058, 0.3570497353442972]
+   Initial separation: 0.091m (✅)
+
+🔍 NO OVERLAP - SEPARATION ANALYSIS (#1):
+   Hand center: [0.27936576 0.09122939 0.35258636]
+   Object center: [0.24772278 0.14169276 0.35507556]
+   Separation distance: 0.059616m (59.6mm)
+   Interior point: [0.26354427 0.11646107 0.35383096]
+   Interior in hand hull: False
+   Interior in object hull: True
+🚨 Hand escapes detected (1 total)
+
+🎯 OVERLAP DETECTED! Volume: 0.000200088 m³ (200.0880 cm³)
+   Separation: 0.071m, HSI points: 35
+
+🎯 OVERLAP DETECTED! Volume: 0.000108069 m³ (108.0689 cm³)
+   Separation: 0.093m, HSI points: 32
+
+🔍 NO OVERLAP - SEPARATION ANALYSIS (#101):
+   Hand center: [0.27593066 0.05117683 0.34393436]
+   Object center: [0.24772278 0.14169276 0.35507556]
+   Separation distance: 0.095462m (95.5mm)
+   Interior point: [0.26182672 0.09643479 0.34950496]
+   Interior in hand hull: False
+   Interior in object hull: True
+
+🎯 OVERLAP DETECTED! Volume: 0.000022153 m³ (22.1532 cm³)
+   Separation: 0.112m, HSI points: 17
+
+🔍 NO OVERLAP - SEPARATION ANALYSIS (#201):
+   Hand center: [ 0.38244408 -0.19397204  0.26143227]
+   Object center: [0.24772278 0.14169276 0.35507556]
+   Separation distance: 0.373617m (373.6mm)
+   Interior point: [ 0.31508343 -0.02613964  0.30825392]
+   Interior in hand hull: False
+   Interior in object hull: False
+
+🔍 NO OVERLAP - SEPARATION ANALYSIS (#301):
+   Hand center: [ 0.12980048 -0.47977717  0.41905165]
+   Object center: [0.24772278 0.14169276 0.35507556]
+   Separation distance: 0.635786m (635.8mm)
+   Interior point: [ 0.18876163 -0.16904221  0.38706361]
+   Interior in hand hull: False
+   Interior in object hull: False
+
+🎯 OVERLAP DETECTED! Volume: 0.000131053 m³ (131.0534 cm³)
+   Separation: 0.077m, HSI points: 25
+✅ Episode success! Overlap: 0.000131m³, Contacts: 0, Reward: 4413.76
+🔧 Episode 0 Reset: Hand=(0.21455631556163668, 0.08672523835580817, 0.4), Target=[0.24831468005092128, 0.1416927645207919, 0.3547524428539617]
+   Initial separation: 0.079m (✅)
+
+🔍 NO OVERLAP - SEPARATION ANALYSIS (#401):
+   Hand center: [-0.0847699   0.45005325  0.34708455]
+   Object center: [0.25046826 0.14254798 0.35358419]
+   Separation distance: 0.454958m (455.0mm)
+   Interior point: [0.08284918 0.29630061 0.35033437]
+   Interior in hand hull: False
+   Interior in object hull: False
+
+🎯 OVERLAP DETECTED! Volume: 0.000069192 m³ (69.1921 cm³)
+   Separation: 0.060m, HSI points: 27
+
+📊 Volume Metrics (Step 500):
+   Overlap:     0.0000 cm³ (0.00% of object)
+   Hand Hull:   0.0000 cm³
+   Object Hull: 0.0000 cm³
+   Distance:    0.281m (Proximity reward: 0.0000)
+   Contacts:    0
+   Best Overlap: 0.0000 cm³
+   Debug: 493/501 successful (8 workspace violations, 0 hull failures)
+
+🔍 NO OVERLAP - SEPARATION ANALYSIS (#501):
+   Hand center: [-0.06666869 -0.12697374  0.31853466]
+   Object center: [0.25046826 0.14254798 0.35358419]
+   Separation distance: 0.417668m (417.7mm)
+   Interior point: [0.09189979 0.00778712 0.33605943]
+   Interior in hand hull: False
+   Interior in object hull: False
+
+🔍 NO OVERLAP - SEPARATION ANALYSIS (#601):
+   Hand center: [-0.16050488 -0.21389603  0.32510308]
+   Object center: [0.25046826 0.14254798 0.35358419]
+   Separation distance: 0.544759m (544.8mm)
+   Interior point: [ 0.04498169 -0.03567402  0.33934363]
+   Interior in hand hull: False
+   Interior in object hull: False
+
+🔍 NO OVERLAP - SEPARATION ANALYSIS (#701):
+   Hand center: [-0.15421234 -0.15381051  0.50084193]
+   Object center: [0.25046826 0.14254798 0.35358419]
+   Separation distance: 0.522761m (522.8mm)
+   Interior point: [ 0.04812796 -0.00563126  0.42721306]
+   Interior in hand hull: False
+   Interior in object hull: False
+
+🎯 OVERLAP DETECTED! Volume: 0.000165948 m³ (165.9483 cm³)
+   Separation: 0.072m, HSI points: 28
+🔧 Episode 0 Reset: Hand=(0.3119060251711459, 0.10812830892491075, 0.3), Target=[0.25106017134635683, 0.14254798625412854, 0.35326109083989077]
+   Initial separation: 0.088m (✅)
+
+🔍 NO OVERLAP - SEPARATION ANALYSIS (#801):
+   Hand center: [0.35278903 0.0616176  0.2957777 ]
+   Object center: [0.24642079 0.15416628 0.35376757]
+   Separation distance: 0.152454m (152.5mm)
+   Interior point: [0.29960491 0.10789194 0.32477263]
+   Interior in hand hull: False
+   Interior in object hull: False
+
+🎯 OVERLAP DETECTED! Volume: 0.000001721 m³ (1.7206 cm³)
+   Separation: 0.137m, HSI points: 9
+
+🎯 OVERLAP DETECTED! Volume: 0.000004543 m³ (4.5434 cm³)
+   Separation: 0.133m, HSI points: 11
+
+🎯 OVERLAP DETECTED! Volume: 0.000286545 m³ (286.5454 cm³)
+   Separation: 0.039m, HSI points: 31
+
+🔍 NO OVERLAP - SEPARATION ANALYSIS (#901):
+   Hand center: [0.2575507  0.03108369 0.44809646]
+   Object center: [0.24642079 0.15416628 0.35376757]
+   Separation distance: 0.155471m (155.5mm)
+   Interior point: [0.25198575 0.09262499 0.40093201]
+   Interior in hand hull: False
+   Interior in object hull: False
+
+📊 Volume Metrics (Step 1,000):
+   Overlap:     0.0000 cm³ (0.00% of object)
+   Hand Hull:   0.0000 cm³
+   Object Hull: 0.0000 cm³
+   Distance:    0.280m (Proximity reward: 0.0000)
+   Contacts:    0
+   Best Overlap: 0.0000 cm³
+   Debug: 990/1001 successful (11 workspace violations, 0 hull failures)
+
+🔍 HSI CALCULATION SUMMARY (#1001):
+   Hand hull volume: 0.000339574 m³ (339.5738 cm³)
+   Object hull volume: 0.001447041 m³ (1447.0409 cm³)
+   Separation distance: 0.312216m (312.2mm)
+   Method: Half-Space Intersection (replacing broken Trimesh)
+
+🔍 NO OVERLAP - SEPARATION ANALYSIS (#1001):
+   Hand center: [ 0.47172162 -0.11225982  0.31539796]
+   Object center: [0.24642079 0.15416628 0.35376757]
+   Separation distance: 0.351021m (351.0mm)
+   Interior point: [0.35907121 0.02095323 0.33458276]
+   Interior in hand hull: False
+   Interior in object hull: False
+
+🔍 NO OVERLAP - SEPARATION ANALYSIS (#1101):
+   Hand center: [ 0.67885506 -0.29457865  0.28629567]
+   Object center: [0.24642079 0.15416628 0.35376757]
+   Separation distance: 0.626836m (626.8mm)
+   Interior point: [ 0.46263793 -0.07020619  0.32003162]
+   Interior in hand hull: False
+   Interior in object hull: False
+
+🎯 OVERLAP DETECTED! Volume: 0.000154135 m³ (154.1353 cm³)
+   Separation: 0.073m, HSI points: 35
+
+🔍 NO OVERLAP - SEPARATION ANALYSIS (#1201):
+   Hand center: [ 0.23799754 -0.06189986  0.36982995]
+   Object center: [0.24642079 0.15416628 0.35376757]
+   Separation distance: 0.216826m (216.8mm)
+   Interior point: [0.24220917 0.04613321 0.36179876]
+   Interior in hand hull: False
+   Interior in object hull: False
+🔧 Episode 0 Reset: Hand=(0.2524718737871195, 0.09889253892300937, 0.4), Target=[0.24701269037623658, 0.1541662848144977, 0.35344445514457745]
+   Initial separation: 0.072m (✅)
+
+🔍 NO OVERLAP - SEPARATION ANALYSIS (#1301):
+   Hand center: [0.46087058 0.33645848 0.48443118]
+   Object center: [0.24152301 0.15750778 0.3568375 ]
+   Separation distance: 0.310511m (310.5mm)
+   Interior point: [0.35119679 0.24698313 0.42063434]
+   Interior in hand hull: False
+   Interior in object hull: False
+
+🔍 NO OVERLAP - SEPARATION ANALYSIS (#1401):
+   Hand center: [0.52872659 0.29687394 0.23457384]
+   Object center: [0.24152301 0.15750778 0.3568375 ]
+   Separation distance: 0.341844m (341.8mm)
+   Interior point: [0.3851248  0.22719086 0.29570567]
+   Interior in hand hull: False
+   Interior in object hull: False
+
+📊 Volume Metrics (Step 1,500):
+   Overlap:     0.0000 cm³ (0.00% of object)
+   Hand Hull:   0.0000 cm³
+   Object Hull: 0.0000 cm³
+   Distance:    0.202m (Proximity reward: 0.0000)
+   Contacts:    0
+   Best Overlap: 0.0000 cm³
+   Debug: 1486/1501 successful (15 workspace violations, 0 hull failures)
+
+🔍 NO OVERLAP - SEPARATION ANALYSIS (#1501):
+   Hand center: [0.3383738  0.10941485 0.21836299]
+   Object center: [0.24152301 0.15750778 0.3568375 ]
+   Separation distance: 0.175693m (175.7mm)
+   Interior point: [0.2899484  0.13346131 0.28760025]
+   Interior in hand hull: False
+   Interior in object hull: False
+
+🎯 OVERLAP DETECTED! Volume: 0.000173696 m³ (173.6963 cm³)
+   Separation: 0.078m, HSI points: 24
+🚨 Hand escapes detected (21 total)
+
+🔍 NO OVERLAP - SEPARATION ANALYSIS (#1601):
+   Hand center: [-0.07092995  0.20146406  0.37196458]
+   Object center: [0.24152301 0.15750778 0.3568375 ]
+   Separation distance: 0.315892m (315.9mm)
+   Interior point: [0.08529653 0.17948592 0.36440104]
+   Interior in hand hull: False
+   Interior in object hull: False
+
+🔍 NO OVERLAP - SEPARATION ANALYSIS (#1701):
+   Hand center: [-0.1051943  -0.22899017  0.27228694]
+   Object center: [0.24152301 0.15750778 0.3568375 ]
+   Separation distance: 0.526063m (526.1mm)
+   Interior point: [ 0.06816435 -0.0357412   0.31456222]
+   Interior in hand hull: False
+   Interior in object hull: False
+🔧 Episode 0 Reset: Hand=(0.2911139338359519, 0.10242412570680183, 0.31439173925105873), Target=[0.24211490559072937, 0.15750777663321183, 0.35651438093778426]
+   Initial separation: 0.085m (✅)
+
+🔍 NO OVERLAP - SEPARATION ANALYSIS (#1801):
+   Hand center: [ 0.25723959 -0.0351594   0.26899269]
+   Object center: [0.25505022 0.15788028 0.3404557 ]
+   Separation distance: 0.205854m (205.9mm)
+   Interior point: [0.2561449  0.06136044 0.3047242 ]
+   Interior in hand hull: False
+   Interior in object hull: False
+
+🔍 NO OVERLAP - SEPARATION ANALYSIS (#1901):
+   Hand center: [0.02745301 0.42457233 0.49350661]
+   Object center: [0.25505022 0.15788028 0.3404557 ]
+   Separation distance: 0.382557m (382.6mm)
+   Interior point: [0.14125162 0.2912263  0.41698116]
+   Interior in hand hull: False
+   Interior in object hull: False
+
+🎯 OVERLAP DETECTED! Volume: 0.000264554 m³ (264.5545 cm³)
+   Separation: 0.036m, HSI points: 47
+
+🎯 OVERLAP DETECTED! Volume: 0.000253158 m³ (253.1577 cm³)
+   Separation: 0.036m, HSI points: 44
+
+📊 Volume Metrics (Step 2,000):
+   Overlap:     0.0000 cm³ (0.00% of object)
+   Hand Hull:   0.0000 cm³
+   Object Hull: 0.0000 cm³
+   Distance:    0.309m (Proximity reward: 0.0000)
+   Contacts:    0
+   Best Overlap: 0.0000 cm³
+   Debug: 1978/2001 successful (23 workspace violations, 0 hull failures)
+
+🎯 OVERLAP DETECTED! Volume: 0.000214281 m³ (214.2807 cm³)
+   Separation: 0.052m, HSI points: 26
+
+🎯 OVERLAP DETECTED! Volume: 0.000233121 m³ (233.1215 cm³)
+   Separation: 0.048m, HSI points: 28
+
+🎯 OVERLAP DETECTED! Volume: 0.000236187 m³ (236.1865 cm³)
+   Separation: 0.048m, HSI points: 27
+
+🎯 OVERLAP DETECTED! Volume: 0.000237585 m³ (237.5850 cm³)
+   Separation: 0.047m, HSI points: 45
+
+🔍 HSI CALCULATION SUMMARY (#2001):
+   Hand hull volume: 0.000276857 m³ (276.8573 cm³)
+   Object hull volume: 0.001447041 m³ (1447.0409 cm³)
+   Separation distance: 0.454538m (454.5mm)
+   Method: Half-Space Intersection (replacing broken Trimesh)
+
+🔍 NO OVERLAP - SEPARATION ANALYSIS (#2001):
+   Hand center: [-0.21124071  0.13154549  0.1856087 ]
+   Object center: [0.25505022 0.15788028 0.3404557 ]
+   Separation distance: 0.492035m (492.0mm)
+   Interior point: [0.02190476 0.14471288 0.2630322 ]
+   Interior in hand hull: False
+   Interior in object hull: False
+
+🎯 OVERLAP DETECTED! Volume: 0.000047566 m³ (47.5660 cm³)
+   Separation: 0.096m, HSI points: 16
+
+🔍 NO OVERLAP - SEPARATION ANALYSIS (#2101):
+   Hand center: [0.43587822 0.15406023 0.32361752]
+   Object center: [0.25505022 0.15788028 0.3404557 ]
+   Separation distance: 0.181650m (181.7mm)
+   Interior point: [0.34546422 0.15597025 0.33203661]
+   Interior in hand hull: False
+   Interior in object hull: False
+
+🔍 NO OVERLAP - SEPARATION ANALYSIS (#2201):
+   Hand center: [ 0.5867326  -0.15320222  0.16488377]
+   Object center: [0.25505022 0.15788028 0.3404557 ]
+   Separation distance: 0.487454m (487.5mm)
+   Interior point: [0.42089141 0.00233903 0.25266974]
+   Interior in hand hull: False
+   Interior in object hull: False
+🔧 Episode 0 Reset: Hand=(0.2230924982452342, 0.15604524282999754, 0.3104589806602169), Target=[0.25564211156609473, 0.15788027554665512, 0.34013259452780004]
+   Initial separation: 0.044m (✅)
+
+🔍 NO OVERLAP - SEPARATION ANALYSIS (#2301):
+   Hand center: [0.38616869 0.17903778 0.44592906]
+   Object center: [0.24654981 0.15219995 0.3565472 ]
+   Separation distance: 0.167937m (167.9mm)
+   Interior point: [0.31635925 0.16561887 0.40123813]
+   Interior in hand hull: False
+   Interior in object hull: False
+
+🔍 NO OVERLAP - SEPARATION ANALYSIS (#2401):
+   Hand center: [ 0.51402869 -0.04794082  0.32854667]
+   Object center: [0.24654981 0.15219995 0.3565472 ]
+   Separation distance: 0.335239m (335.2mm)
+   Interior point: [0.38028925 0.05212957 0.34254693]
+   Interior in hand hull: False
+   Interior in object hull: False
+
+📊 Volume Metrics (Step 2,500):
+   Overlap:     0.0000 cm³ (0.00% of object)
+   Hand Hull:   0.0000 cm³
+   Object Hull: 0.0000 cm³
+   Distance:    0.357m (Proximity reward: 0.0000)
+   Contacts:    0
+   Best Overlap: 0.0000 cm³
+   Debug: 2473/2501 successful (28 workspace violations, 0 hull failures)
+
+🔍 NO OVERLAP - SEPARATION ANALYSIS (#2501):
+   Hand center: [ 0.44621915 -0.03387001  0.32506981]
+   Object center: [0.24654981 0.15219995 0.3565472 ]
+   Separation distance: 0.274738m (274.7mm)
+   Interior point: [0.34638448 0.05916497 0.3408085 ]
+   Interior in hand hull: False
+   Interior in object hull: False
+
+🎯 OVERLAP DETECTED! Volume: 0.000265309 m³ (265.3091 cm³)
+   Separation: 0.040m, HSI points: 36
+
+🎯 OVERLAP DETECTED! Volume: 0.000089014 m³ (89.0139 cm³)
+   Separation: 0.092m, HSI points: 26
+
+🎯 OVERLAP DETECTED! Volume: 0.000021966 m³ (21.9659 cm³)
+   Separation: 0.112m, HSI points: 12
+
+🔍 NO OVERLAP - SEPARATION ANALYSIS (#2601):
+   Hand center: [0.40628933 0.12621706 0.45525814]
+   Object center: [0.24654981 0.15219995 0.3565472 ]
+   Separation distance: 0.189567m (189.6mm)
+   Interior point: [0.32641957 0.13920851 0.40590267]
+   Interior in hand hull: False
+   Interior in object hull: False
+
+🔍 NO OVERLAP - SEPARATION ANALYSIS (#2701):
+   Hand center: [0.66176437 0.16358463 0.29438073]
+   Object center: [0.24654981 0.15219995 0.3565472 ]
+   Separation distance: 0.419997m (420.0mm)
+   Interior point: [0.45415709 0.15789229 0.32546397]
+   Interior in hand hull: False
+   Interior in object hull: False
+
+🎯 OVERLAP DETECTED! Volume: 0.000254423 m³ (254.4234 cm³)
+   Separation: 0.040m, HSI points: 45
+✅ Episode success! Overlap: 0.000254m³, Contacts: 0, Reward: 6837.40
+🔧 Episode 0 Reset: Hand=(0.22134892004491136, 0.09316903807527963, 0.4), Target=[0.24714170654935416, 0.15219995288051402, 0.35622409458797544]
+   Initial separation: 0.078m (✅)
+
+🎯 OVERLAP DETECTED! Volume: 0.000342534 m³ (342.5337 cm³)
+   Separation: 0.022m, HSI points: 41
+
+🎯 OVERLAP DETECTED! Volume: 0.000452510 m³ (452.5099 cm³)
+   Separation: 0.031m, HSI points: 43
+
+🎯 OVERLAP DETECTED! Volume: 0.000294210 m³ (294.2104 cm³)
+   Separation: 0.061m, HSI points: 34
+
+🎯 OVERLAP DETECTED! Volume: 0.000518727 m³ (518.7269 cm³)
+   Separation: 0.017m, HSI points: 45
+
+🎯 OVERLAP DETECTED! Volume: 0.000125015 m³ (125.0154 cm³)
+   Separation: 0.076m, HSI points: 20
+🚨 Hand escapes detected (41 total)
+
+🎯 OVERLAP DETECTED! Volume: 0.000409267 m³ (409.2670 cm³)
+   Separation: 0.046m, HSI points: 38
+
+🎯 OVERLAP DETECTED! Volume: 0.000400310 m³ (400.3098 cm³)
+   Separation: 0.049m, HSI points: 40
+
+🎯 OVERLAP DETECTED! Volume: 0.000376211 m³ (376.2113 cm³)
+   Separation: 0.053m, HSI points: 39
+
+🎯 OVERLAP DETECTED! Volume: 0.000300791 m³ (300.7905 cm³)
+   Separation: 0.067m, HSI points: 39
+
+🎯 OVERLAP DETECTED! Volume: 0.000094544 m³ (94.5439 cm³)
+   Separation: 0.095m, HSI points: 22
+
+🎯 OVERLAP DETECTED! Volume: 0.000045257 m³ (45.2574 cm³)
+   Separation: 0.107m, HSI points: 19
+
+🔍 NO OVERLAP - SEPARATION ANALYSIS (#2801):
+   Hand center: [ 0.64131117 -0.05112808  0.59080566]
+   Object center: [0.25724826 0.15423073 0.35924353]
+   Separation distance: 0.493252m (493.3mm)
+   Interior point: [0.44927971 0.05155132 0.4750246 ]
+   Interior in hand hull: False
+   Interior in object hull: False
+
+🎯 OVERLAP DETECTED! Volume: 0.000182503 m³ (182.5032 cm³)
+   Separation: 0.065m, HSI points: 30
+✅ Episode success! Overlap: 0.000183m³, Contacts: 0, Reward: 1362.52
+🔧 Episode 0 Reset: Hand=(0.29615473886493654, 0.08370378917645512, 0.3395189836683642), Target=[0.25784016192666526, 0.15423072887285175, 0.35892042074395064]
+   Initial separation: 0.083m (✅)
+
+🔍 NO OVERLAP - SEPARATION ANALYSIS (#2901):
+   Hand center: [0.03579252 0.25579306 0.32811418]
+   Object center: [0.2406629  0.15727615 0.35614737]
+   Separation distance: 0.229049m (229.0mm)
+   Interior point: [0.13822771 0.20653461 0.34213078]
+   Interior in hand hull: False
+   Interior in object hull: False
+
+📊 Volume Metrics (Step 3,000):
+   Overlap:     0.0000 cm³ (0.00% of object)
+   Hand Hull:   0.0000 cm³
+   Object Hull: 0.0000 cm³
+   Distance:    0.358m (Proximity reward: 0.0000)
+   Contacts:    0
+   Best Overlap: 0.0000 cm³
+   Debug: 2961/3001 successful (40 workspace violations, 0 hull failures)
+
+🔍 HSI CALCULATION SUMMARY (#3001):
+   Hand hull volume: 0.000325787 m³ (325.7866 cm³)
+   Object hull volume: 0.001447041 m³ (1447.0409 cm³)
+   Separation distance: 0.343222m (343.2mm)
+   Method: Half-Space Intersection (replacing broken Trimesh)
+
+🔍 NO OVERLAP - SEPARATION ANALYSIS (#3001):
+   Hand center: [-0.04376054  0.09442271  0.2963784 ]
+   Object center: [0.2406629  0.15727615 0.35614737]
+   Separation distance: 0.297354m (297.4mm)
+   Interior point: [0.09845118 0.12584943 0.32626289]
+   Interior in hand hull: False
+   Interior in object hull: False
+
+🔍 NO OVERLAP - SEPARATION ANALYSIS (#3101):
+   Hand center: [-0.09976045  0.24139222  0.51946876]
+   Object center: [0.2406629  0.15727615 0.35614737]
+   Separation distance: 0.386830m (386.8mm)
+   Interior point: [0.07045122 0.19933419 0.43780807]
+   Interior in hand hull: False
+   Interior in object hull: False
+
+🎯 OVERLAP DETECTED! Volume: 0.000167833 m³ (167.8334 cm³)
+   Separation: 0.069m, HSI points: 22
+
+🎯 OVERLAP DETECTED! Volume: 0.000036402 m³ (36.4022 cm³)
+   Separation: 0.110m, HSI points: 13
+
+🔍 NO OVERLAP - SEPARATION ANALYSIS (#3201):
+   Hand center: [0.19721813 0.4545666  0.45063184]
+   Object center: [0.2406629  0.15727615 0.35614737]
+   Separation distance: 0.314955m (315.0mm)
+   Interior point: [0.21894051 0.30592138 0.40338961]
+   Interior in hand hull: False
+   Interior in object hull: False
+
+🎯 OVERLAP DETECTED! Volume: 0.000108291 m³ (108.2914 cm³)
+   Separation: 0.081m, HSI points: 17
+
+🎯 OVERLAP DETECTED! Volume: 0.000108792 m³ (108.7923 cm³)
+   Separation: 0.081m, HSI points: 18
+
+🎯 OVERLAP DETECTED! Volume: 0.000196065 m³ (196.0651 cm³)
+   Separation: 0.062m, HSI points: 29
+
+🎯 OVERLAP DETECTED! Volume: 0.000173783 m³ (173.7827 cm³)
+   Separation: 0.067m, HSI points: 25
+
+🎯 OVERLAP DETECTED! Volume: 0.000103029 m³ (103.0292 cm³)
+   Separation: 0.082m, HSI points: 21
+
+🎯 OVERLAP DETECTED! Volume: 0.000176553 m³ (176.5528 cm³)
+   Separation: 0.064m, HSI points: 27
+
+🎯 OVERLAP DETECTED! Volume: 0.000199727 m³ (199.7269 cm³)
+   Separation: 0.061m, HSI points: 25
+
+🎯 OVERLAP DETECTED! Volume: 0.000155968 m³ (155.9681 cm³)
+   Separation: 0.070m, HSI points: 27
+
+🎯 OVERLAP DETECTED! Volume: 0.000103466 m³ (103.4664 cm³)
+   Separation: 0.079m, HSI points: 24
+
+🎯 OVERLAP DETECTED! Volume: 0.000147037 m³ (147.0367 cm³)
+   Separation: 0.070m, HSI points: 21
+🔧 Episode 0 Reset: Hand=(0.2254961016936301, 0.09568869154234808, 0.4), Target=[0.24125479272173536, 0.15727615774691037, 0.35582426384803606]
+   Initial separation: 0.077m (✅)
+
+🔍 NO OVERLAP - SEPARATION ANALYSIS (#3301):
+   Hand center: [0.44445875 0.21158117 0.30153886]
+   Object center: [0.24363958 0.14467251 0.34977626]
+   Separation distance: 0.217099m (217.1mm)
+   Interior point: [0.34404917 0.17812684 0.32565756]
+   Interior in hand hull: False
+   Interior in object hull: False
+
+🎯 OVERLAP DETECTED! Volume: 0.000158228 m³ (158.2283 cm³)
+   Separation: 0.066m, HSI points: 29
+✅ Episode success! Overlap: 0.000158m³, Contacts: 0, Reward: 867.86
+🔧 Episode 0 Reset: Hand=(0.24410500399717003, 0.0792307147635544, 0.4), Target=[0.24423148071679704, 0.1446725163302883, 0.34945314396539845]
+   Initial separation: 0.083m (✅)
+✅ Episode success! Overlap: 0.000000m³, Contacts: 0, Reward: 0.00
+🔧 Episode 0 Reset: Hand=(0.2474325429542063, 0.08838081603417769, 0.35280925759306725), Target=[0.24683352272588938, 0.14294599598211616, 0.3413359326858976]
+   Initial separation: 0.056m (✅)
+
+🔍 NO OVERLAP - SEPARATION ANALYSIS (#3401):
+   Hand center: [0.24268001 0.17393603 0.23655339]
+   Object center: [0.25495989 0.14959356 0.35452446]
+   Separation distance: 0.121081m (121.1mm)
+   Interior point: [0.24881995 0.16176479 0.29553892]
+   Interior in hand hull: False
+   Interior in object hull: True
+
+📊 Volume Metrics (Step 3,500):
+   Overlap:     0.0000 cm³ (0.00% of object)
+   Hand Hull:   0.0000 cm³
+   Object Hull: 0.0000 cm³
+   Distance:    0.275m (Proximity reward: 0.0000)
+   Contacts:    0
+   Best Overlap: 0.0000 cm³
+   Debug: 3454/3501 successful (47 workspace violations, 0 hull failures)
+
+🎯 OVERLAP DETECTED! Volume: 0.000095196 m³ (95.1962 cm³)
+   Separation: 0.089m, HSI points: 27
+
+🎯 OVERLAP DETECTED! Volume: 0.000189069 m³ (189.0686 cm³)
+   Separation: 0.043m, HSI points: 31
+
+🔍 NO OVERLAP - SEPARATION ANALYSIS (#3501):
+   Hand center: [ 0.3603251  -0.01409361  0.08112629]
+   Object center: [0.25495989 0.14959356 0.35452446]
+   Separation distance: 0.335622m (335.6mm)
+   Interior point: [0.30764249 0.06774998 0.21782537]
+   Interior in hand hull: False
+   Interior in object hull: False
+
+🎯 OVERLAP DETECTED! Volume: 0.000028224 m³ (28.2241 cm³)
+   Separation: 0.097m, HSI points: 16
+
+🎯 OVERLAP DETECTED! Volume: 0.000187349 m³ (187.3492 cm³)
+   Separation: 0.054m, HSI points: 31
+
+🎯 OVERLAP DETECTED! Volume: 0.000036342 m³ (36.3422 cm³)
+   Separation: 0.088m, HSI points: 20
+
+🔍 NO OVERLAP - SEPARATION ANALYSIS (#3601):
+   Hand center: [0.1845653  0.31602764 0.58258184]
+   Object center: [0.25495989 0.14959356 0.35452446]
+   Separation distance: 0.290974m (291.0mm)
+   Interior point: [0.2197626  0.2328106  0.46855315]
+   Interior in hand hull: False
+   Interior in object hull: False
+
+🎯 OVERLAP DETECTED! Volume: 0.000281832 m³ (281.8320 cm³)
+   Separation: 0.045m, HSI points: 40
+✅ Episode success! Overlap: 0.000282m³, Contacts: 0, Reward: 5690.86
+🔧 Episode 0 Reset: Hand=(0.2590084516522567, 0.14354903382665035, 0.3609995041879589), Target=[0.2555517962790938, 0.14959356487036427, 0.3542013351434187]
+   Initial separation: 0.010m (✅)
+
+🎯 OVERLAP DETECTED! Volume: 0.000069140 m³ (69.1399 cm³)
+   Separation: 0.050m, HSI points: 30
+🚨 Hand escapes detected (61 total)

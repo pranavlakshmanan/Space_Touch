@@ -18,8 +18,8 @@ import tacto
 # Tendon-based hand movement with torque control and reference axis
 
 # ─── PARAMETERS ────────────────────────────────────────────────────────────
-URDF_HAND    = "/home/pralak/Space_touch/examples/allegro_hand_description/allegro_hand_description_left_digit_fixed.urdf"
-URDF_SPHERE  = "/home/pralak/Space_touch/examples/objects/sphere_small.urdf"
+URDF_HAND    = "/home/pralak/Space_Touch/examples/allegro_hand_description/allegro_hand_description_left_digit_fixed.urdf"
+URDF_SPHERE  = "/home/pralak/Space_Touch/examples/objects/sphere_small.urdf"
 
 # Tendon control parameters
 TENDON_FORCE_GAIN = 10.0   # Base gain for tendon force to torque conversion
@@ -284,10 +284,10 @@ def main():
     p.resetDebugVisualizerCamera(0.6, 60, -30, [0, 0, 0.25])
 
     # 3) Initialize Tacto
-    bg = cv2.imread("/home/pralak/Space_touch/examples/conf/bg_digit_240_320.jpg")
+    bg = cv2.imread("/home/pralak/Space_Touch/examples/conf/bg_digit_240_320.jpg")
     sensor = tacto.Sensor(120, 160,
                          background=bg,
-                         config_path="/home/pralak/Space_touch/tacto/config_digit.yml")
+                         config_path="/home/pralak/Space_Touch/tacto/config_digit.yml")
 
     # 4) Load hand with a dynamic base
     hand = px.Body(urdf_path=URDF_HAND,

@@ -1,1 +1,8 @@
-examples/tacto-env/
+# Ignore wandb logs
+wandb/
+*.wandb
+
+# Ignore large datasets
+*.csv
+*.h5
+

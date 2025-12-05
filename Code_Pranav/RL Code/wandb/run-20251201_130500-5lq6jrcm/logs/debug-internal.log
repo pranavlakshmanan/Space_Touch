@@ -1,0 +1,10 @@
+{"time":"2025-12-01T13:05:01.006940076+05:30","level":"INFO","msg":"stream: starting","core version":"0.22.1"}
+{"time":"2025-12-01T13:05:01.469711807+05:30","level":"INFO","msg":"stream: created new stream","id":"5lq6jrcm"}
+{"time":"2025-12-01T13:05:01.469744428+05:30","level":"INFO","msg":"handler: started","stream_id":"5lq6jrcm"}
+{"time":"2025-12-01T13:05:01.469810701+05:30","level":"INFO","msg":"stream: started","id":"5lq6jrcm"}
+{"time":"2025-12-01T13:05:01.469823655+05:30","level":"INFO","msg":"writer: started","stream_id":"5lq6jrcm"}
+{"time":"2025-12-01T13:05:01.469823255+05:30","level":"INFO","msg":"sender: started","stream_id":"5lq6jrcm"}
+{"time":"2025-12-01T13:17:19.763815632+05:30","level":"INFO","msg":"handler: operation stats","stats":{"operations":[{"desc":"updating run metadata","runtime_seconds":0.000679477}],"total_operations":1}}
+{"time":"2025-12-01T13:17:19.835464239+05:30","level":"INFO","msg":"stream: closing","id":"5lq6jrcm"}
+{"time":"2025-12-01T13:17:20.095366641+05:30","level":"ERROR","msg":"sender: sendSummary called after exit"}
+{"time":"2025-12-01T13:17:20.095694702+05:30","level":"WARN","msg":"sender: received Exit record more than once, ignoring"}

@@ -1,0 +1,79 @@
+{"time":"2025-11-24T17:15:32.115844521+05:30","level":"INFO","msg":"stream: starting","core version":"0.22.1"}
+{"time":"2025-11-24T17:15:32.53129089+05:30","level":"INFO","msg":"stream: created new stream","id":"8gssmn13"}
+{"time":"2025-11-24T17:15:32.531323561+05:30","level":"INFO","msg":"handler: started","stream_id":"8gssmn13"}
+{"time":"2025-11-24T17:15:32.531395966+05:30","level":"INFO","msg":"stream: started","id":"8gssmn13"}
+{"time":"2025-11-24T17:15:32.531409431+05:30","level":"INFO","msg":"writer: started","stream_id":"8gssmn13"}
+{"time":"2025-11-24T17:15:32.531416935+05:30","level":"INFO","msg":"sender: started","stream_id":"8gssmn13"}
+{"time":"2025-11-24T17:15:33.566493453+05:30","level":"INFO","msg":"flowcontrol: backed up, offloading to disk","recordNumber":37}
+{"time":"2025-11-24T17:15:33.706448046+05:30","level":"INFO","msg":"flowcontrol: unblocked","totalOffloaded":16}
+{"time":"2025-11-24T17:15:48.566214371+05:30","level":"INFO","msg":"flowcontrol: backed up, offloading to disk","recordNumber":2522}
+{"time":"2025-11-24T17:15:48.673610808+05:30","level":"INFO","msg":"flowcontrol: unblocked","totalOffloaded":7}
+{"time":"2025-11-24T17:16:03.454659384+05:30","level":"INFO","msg":"flowcontrol: backed up, offloading to disk","recordNumber":4585}
+{"time":"2025-11-24T17:16:03.67944086+05:30","level":"INFO","msg":"flowcontrol: unblocked","totalOffloaded":32}
+{"time":"2025-11-24T17:16:18.591637253+05:30","level":"INFO","msg":"flowcontrol: backed up, offloading to disk","recordNumber":6551}
+{"time":"2025-11-24T17:16:18.742758357+05:30","level":"INFO","msg":"flowcontrol: unblocked","totalOffloaded":13}
+{"time":"2025-11-24T17:16:48.427287318+05:30","level":"INFO","msg":"flowcontrol: backed up, offloading to disk","recordNumber":9821}
+{"time":"2025-11-24T17:16:48.675003048+05:30","level":"INFO","msg":"flowcontrol: unblocked","totalOffloaded":43}
+{"time":"2025-11-24T17:17:48.59882865+05:30","level":"INFO","msg":"flowcontrol: backed up, offloading to disk","recordNumber":15543}
+{"time":"2025-11-24T17:17:48.727356657+05:30","level":"INFO","msg":"flowcontrol: unblocked","totalOffloaded":33}
+{"time":"2025-11-24T17:18:18.708253196+05:30","level":"INFO","msg":"flowcontrol: backed up, offloading to disk","recordNumber":17946}
+{"time":"2025-11-24T17:18:18.723153683+05:30","level":"INFO","msg":"flowcontrol: unblocked","totalOffloaded":11}
+{"time":"2025-11-24T17:18:48.867492833+05:30","level":"INFO","msg":"flowcontrol: backed up, offloading to disk","recordNumber":20007}
+{"time":"2025-11-24T17:18:48.954630797+05:30","level":"INFO","msg":"flowcontrol: unblocked","totalOffloaded":6}
+{"time":"2025-11-24T17:23:03.563620225+05:30","level":"INFO","msg":"flowcontrol: backed up, offloading to disk","recordNumber":32834}
+{"time":"2025-11-24T17:23:03.711957386+05:30","level":"INFO","msg":"flowcontrol: unblocked","totalOffloaded":4}
+{"time":"2025-11-24T17:58:04.14719883+05:30","level":"INFO","msg":"flowcontrol: backed up, offloading to disk","recordNumber":70877}
+{"time":"2025-11-24T17:58:04.245547711+05:30","level":"INFO","msg":"flowcontrol: unblocked","totalOffloaded":7}
+{"time":"2025-11-24T20:05:48.148838795+05:30","level":"INFO","msg":"api: retrying error","error":"Post \"https://api.wandb.ai/files/pranavlakshman79-lossfunk/space-touch-convex-hull-3phase/8gssmn13/file_stream\": dial tcp: lookup api.wandb.ai on 127.0.0.53:53: server misbehaving"}
+{"time":"2025-11-24T20:05:49.727292522+05:30","level":"INFO","msg":"flowcontrol: backed up, offloading to disk","recordNumber":132624}
+{"time":"2025-11-24T20:05:50.244327645+05:30","level":"INFO","msg":"api: retrying error","error":"Post \"https://api.wandb.ai/files/pranavlakshman79-lossfunk/space-touch-convex-hull-3phase/8gssmn13/file_stream\": dial tcp: lookup api.wandb.ai on 127.0.0.53:53: server misbehaving"}
+{"time":"2025-11-24T20:05:55.03966631+05:30","level":"INFO","msg":"flowcontrol: unblocked","totalOffloaded":37}
+{"time":"2025-11-24T20:07:02.028705091+05:30","level":"INFO","msg":"api: retrying error","error":"Post \"https://api.wandb.ai/files/pranavlakshman79-lossfunk/space-touch-convex-hull-3phase/8gssmn13/file_stream\": dial tcp: lookup api.wandb.ai on 127.0.0.53:53: server misbehaving"}
+{"time":"2025-11-24T20:07:04.286233146+05:30","level":"INFO","msg":"api: retrying error","error":"Post \"https://api.wandb.ai/files/pranavlakshman79-lossfunk/space-touch-convex-hull-3phase/8gssmn13/file_stream\": dial tcp: lookup api.wandb.ai on 127.0.0.53:53: server misbehaving"}
+{"time":"2025-11-24T20:07:08.767139366+05:30","level":"INFO","msg":"api: retrying error","error":"Post \"https://api.wandb.ai/files/pranavlakshman79-lossfunk/space-touch-convex-hull-3phase/8gssmn13/file_stream\": dial tcp: lookup api.wandb.ai on 127.0.0.53:53: server misbehaving"}
+{"time":"2025-11-24T20:07:09.376887177+05:30","level":"INFO","msg":"flowcontrol: backed up, offloading to disk","recordNumber":132744}
+{"time":"2025-11-24T20:10:23.023057319+05:30","level":"INFO","msg":"api: retrying error","error":"Post \"https://api.wandb.ai/graphql\": net/http: request canceled (Client.Timeout exceeded while awaiting headers)"}
+{"time":"2025-11-24T20:10:23.023434392+05:30","level":"INFO","msg":"api: retrying error","error":"Post \"https://api.wandb.ai/files/pranavlakshman79-lossfunk/space-touch-convex-hull-3phase/8gssmn13/file_stream\": dial tcp: lookup api.wandb.ai on 127.0.0.53:53: server misbehaving"}
+{"time":"2025-11-24T20:11:12.034772945+05:30","level":"INFO","msg":"api: retrying error","error":"Post \"https://api.wandb.ai/files/pranavlakshman79-lossfunk/space-touch-convex-hull-3phase/8gssmn13/file_stream\": dial tcp: lookup api.wandb.ai on 127.0.0.53:53: server misbehaving"}
+{"time":"2025-11-24T20:11:13.797272315+05:30","level":"INFO","msg":"api: retrying error","error":"Post \"https://api.wandb.ai/graphql\": context deadline exceeded"}
+{"time":"2025-11-24T20:24:19.141564131+05:30","level":"INFO","msg":"api: retrying error","error":"Post \"https://api.wandb.ai/graphql\": net/http: request canceled (Client.Timeout exceeded while awaiting headers)"}
+{"time":"2025-11-24T20:24:22.440462826+05:30","level":"INFO","msg":"api: retrying error","error":"Post \"https://api.wandb.ai/files/pranavlakshman79-lossfunk/space-touch-convex-hull-3phase/8gssmn13/file_stream\": dial tcp: lookup api.wandb.ai on 127.0.0.53:53: server misbehaving"}
+{"time":"2025-11-25T18:33:37.033870734+05:30","level":"INFO","msg":"api: retrying error","error":"Post \"https://api.wandb.ai/graphql\": net/http: request canceled (Client.Timeout exceeded while awaiting headers)"}
+{"time":"2025-11-25T18:34:32.101682697+05:30","level":"INFO","msg":"api: retrying error","error":"Post \"https://api.wandb.ai/graphql\": net/http: request canceled (Client.Timeout exceeded while awaiting headers)"}
+{"time":"2025-11-25T18:35:41.297008658+05:30","level":"INFO","msg":"api: retrying error","error":"Post \"https://api.wandb.ai/graphql\": net/http: request canceled (Client.Timeout exceeded while awaiting headers)"}
+{"time":"2025-11-25T18:37:11.298329287+05:30","level":"INFO","msg":"api: retrying error","error":"Post \"https://api.wandb.ai/graphql\": net/http: request canceled (Client.Timeout exceeded while awaiting headers)"}
+{"time":"2025-11-25T18:38:41.299316275+05:30","level":"INFO","msg":"api: retrying error","error":"Post \"https://api.wandb.ai/graphql\": context deadline exceeded"}
+{"time":"2025-11-25T18:40:11.300801059+05:30","level":"INFO","msg":"api: retrying error","error":"Post \"https://api.wandb.ai/graphql\": context deadline exceeded"}
+{"time":"2025-11-25T18:41:12.184382126+05:30","level":"WARN","msg":"sender: taking a long time","seconds":600.000581061,"work":"WorkRecord(*service_go_proto.Request_StopStatus); Control(local:true  mailbox_slot:\"0m502ogfegbs\"  connection_id:\"1(@)\")"}
+{"time":"2025-11-25T18:41:41.301751107+05:30","level":"INFO","msg":"api: retrying error","error":"Post \"https://api.wandb.ai/graphql\": net/http: request canceled (Client.Timeout exceeded while awaiting headers)"}
+{"time":"2025-11-25T18:43:11.302619554+05:30","level":"INFO","msg":"api: retrying error","error":"Post \"https://api.wandb.ai/graphql\": context deadline exceeded (Client.Timeout exceeded while awaiting headers)"}
+{"time":"2025-11-25T18:44:41.303710711+05:30","level":"INFO","msg":"api: retrying error","error":"Post \"https://api.wandb.ai/graphql\": net/http: request canceled (Client.Timeout exceeded while awaiting headers)"}
+{"time":"2025-11-25T18:45:41.85628864+05:30","level":"INFO","msg":"sender: succeeded after taking longer than expected","seconds":869.670413331,"work":"WorkRecord(*service_go_proto.Request_StopStatus); Control(local:true  mailbox_slot:\"0m502ogfegbs\"  connection_id:\"1(@)\")"}
+{"time":"2025-11-25T18:45:41.897450955+05:30","level":"INFO","msg":"flowcontrol: unblocked","totalOffloaded":6009}
+{"time":"2025-11-25T18:53:18.212491778+05:30","level":"INFO","msg":"flowcontrol: backed up, offloading to disk","recordNumber":142095}
+{"time":"2025-11-25T18:53:18.835827172+05:30","level":"INFO","msg":"flowcontrol: unblocked","totalOffloaded":4}
+{"time":"2025-11-25T19:39:34.087122128+05:30","level":"INFO","msg":"flowcontrol: backed up, offloading to disk","recordNumber":158525}
+{"time":"2025-11-25T19:39:34.233810347+05:30","level":"INFO","msg":"flowcontrol: unblocked","totalOffloaded":8}
+{"time":"2025-11-25T20:40:05.371252612+05:30","level":"INFO","msg":"flowcontrol: backed up, offloading to disk","recordNumber":179141}
+{"time":"2025-11-25T20:40:05.458442244+05:30","level":"INFO","msg":"flowcontrol: unblocked","totalOffloaded":6}
+{"time":"2025-11-25T23:29:47.609766399+05:30","level":"INFO","msg":"flowcontrol: backed up, offloading to disk","recordNumber":227022}
+{"time":"2025-11-25T23:30:08.187032516+05:30","level":"INFO","msg":"api: retrying error","error":"Post \"https://api.wandb.ai/graphql\": context deadline exceeded"}
+{"time":"2025-11-25T23:30:40.275408616+05:30","level":"INFO","msg":"flowcontrol: unblocked","totalOffloaded":212}
+{"time":"2025-11-26T01:33:49.53775972+05:30","level":"INFO","msg":"flowcontrol: backed up, offloading to disk","recordNumber":255392}
+{"time":"2025-11-26T01:34:10.819166301+05:30","level":"INFO","msg":"api: retrying error","error":"Post \"https://api.wandb.ai/graphql\": net/http: request canceled (Client.Timeout exceeded while awaiting headers)"}
+{"time":"2025-11-26T01:34:13.660856559+05:30","level":"INFO","msg":"flowcontrol: unblocked","totalOffloaded":77}
+{"time":"2025-11-26T01:48:08.833364241+05:30","level":"INFO","msg":"flowcontrol: backed up, offloading to disk","recordNumber":258583}
+{"time":"2025-11-26T01:48:26.190098953+05:30","level":"INFO","msg":"api: retrying error","error":"Post \"https://api.wandb.ai/graphql\": context deadline exceeded"}
+{"time":"2025-11-26T01:48:28.686090743+05:30","level":"INFO","msg":"flowcontrol: unblocked","totalOffloaded":80}
+{"time":"2025-11-26T01:51:29.241005988+05:30","level":"INFO","msg":"api: retrying HTTP error","status":502,"url":"https://api.wandb.ai/files/pranavlakshman79-lossfunk/space-touch-convex-hull-3phase/8gssmn13/file_stream","body":"\n<html><head>\n<meta http-equiv=\"content-type\" content=\"text/html;charset=utf-8\">\n<title>502 Server Error</title>\n</head>\n<body text=#000000 bgcolor=#ffffff>\n<h1>Error: Server Error</h1>\n<h2>The server encountered a temporary error and could not complete your request.<p>Please try again in 30 seconds.</h2>\n<h2></h2>\n</body></html>\n"}
+{"time":"2025-11-26T06:37:32.460221407+05:30","level":"INFO","msg":"flowcontrol: backed up, offloading to disk","recordNumber":316716}
+{"time":"2025-11-26T06:37:32.588992795+05:30","level":"INFO","msg":"flowcontrol: unblocked","totalOffloaded":10}
+{"time":"2025-11-26T06:43:49.623063659+05:30","level":"INFO","msg":"flowcontrol: backed up, offloading to disk","recordNumber":317825}
+{"time":"2025-11-26T06:44:02.242283299+05:30","level":"INFO","msg":"api: retrying error","error":"Post \"https://api.wandb.ai/graphql\": net/http: request canceled (Client.Timeout exceeded while awaiting headers)"}
+{"time":"2025-11-26T06:44:05.192269297+05:30","level":"INFO","msg":"flowcontrol: unblocked","totalOffloaded":83}
+{"time":"2025-11-26T07:57:16.974083118+05:30","level":"INFO","msg":"handler: operation stats","stats":{"operations":[{"desc":"updating run metadata","runtime_seconds":0.001870479}],"total_operations":1}}
+{"time":"2025-11-26T07:57:28.21020959+05:30","level":"INFO","msg":"fileTransfer: Close: file transfer manager closed"}
+{"time":"2025-11-26T07:57:28.732193077+05:30","level":"INFO","msg":"stream: closing","id":"8gssmn13"}
+{"time":"2025-11-26T07:57:28.732206171+05:30","level":"INFO","msg":"handler: closed","stream_id":"8gssmn13"}
+{"time":"2025-11-26T07:57:28.732250975+05:30","level":"INFO","msg":"sender: closed","stream_id":"8gssmn13"}
+{"time":"2025-11-26T07:57:28.732264079+05:30","level":"INFO","msg":"stream: closed","id":"8gssmn13"}

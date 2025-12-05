@@ -1,0 +1,26 @@
+2025-11-24 17:15:31,859 INFO    MainThread:148078 [wandb_setup.py:_flush():81] Current SDK version is 0.22.1
+2025-11-24 17:15:31,860 INFO    MainThread:148078 [wandb_setup.py:_flush():81] Configure stats pid to 148078
+2025-11-24 17:15:31,860 INFO    MainThread:148078 [wandb_setup.py:_flush():81] Loading settings from /home/pralak/.config/wandb/settings
+2025-11-24 17:15:31,860 INFO    MainThread:148078 [wandb_setup.py:_flush():81] Loading settings from /home/pralak/Space_Touch/Code_Pranav/RL Code/wandb/settings
+2025-11-24 17:15:31,860 INFO    MainThread:148078 [wandb_setup.py:_flush():81] Loading settings from environment variables
+2025-11-24 17:15:31,860 INFO    MainThread:148078 [wandb_init.py:setup_run_log_directory():705] Logging user logs to /home/pralak/Space_Touch/Code_Pranav/RL Code/wandb/run-20251124_171531-8gssmn13/logs/debug.log
+2025-11-24 17:15:31,860 INFO    MainThread:148078 [wandb_init.py:setup_run_log_directory():706] Logging internal logs to /home/pralak/Space_Touch/Code_Pranav/RL Code/wandb/run-20251124_171531-8gssmn13/logs/debug-internal.log
+2025-11-24 17:15:31,860 INFO    MainThread:148078 [wandb_init.py:init():832] calling init triggers
+2025-11-24 17:15:31,860 INFO    MainThread:148078 [wandb_init.py:init():837] wandb.init called with sweep_config: {}
+config: {'algorithm': 'PPO', 'total_timesteps': 1000000, 'learning_rate': 0.0003, 'batch_size': 64, 'n_steps': 2048, 'n_epochs': 10, 'gamma': 0.99, 'gae_lambda': 0.95, 'clip_range': 0.2, 'curriculum_phases': 3, 'phase1_max_steps': 300000, 'phase2_max_steps': 350000, 'phase3_max_steps': 350000, 'observation_dim': 28, 'action_dim': 10, 'max_episode_steps': 500, 'object_radius': 0.05, 'safety_margin': 0.025, 'palm_position_fix': True, 'hull_validation': True, 'binary_tactile': True, 'device': 'cpu', 'previous_versions': ['SC-1', 'V2', 'V3', 'V4'], 'breakthrough': 'spatial_containment_unification', 'safety_first': True, '_wandb': {}}
+2025-11-24 17:15:31,860 INFO    MainThread:148078 [wandb_init.py:init():880] starting backend
+2025-11-24 17:15:32,088 INFO    MainThread:148078 [wandb_init.py:init():883] sending inform_init request
+2025-11-24 17:15:32,115 INFO    MainThread:148078 [wandb_init.py:init():891] backend started and connected
+2025-11-24 17:15:32,118 INFO    MainThread:148078 [wandb_init.py:init():961] updated telemetry
+2025-11-24 17:15:32,145 INFO    MainThread:148078 [wandb_init.py:init():985] communicating run to backend with 90.0 second timeout
+2025-11-24 17:15:33,253 INFO    MainThread:148078 [wandb_init.py:init():1036] starting run threads in backend
+2025-11-24 17:15:33,324 INFO    MainThread:148078 [wandb_run.py:_console_start():2506] atexit reg
+2025-11-24 17:15:33,324 INFO    MainThread:148078 [wandb_run.py:_redirect():2354] redirect: wrap_raw
+2025-11-24 17:15:33,324 INFO    MainThread:148078 [wandb_run.py:_redirect():2423] Wrapping output streams.
+2025-11-24 17:15:33,324 INFO    MainThread:148078 [wandb_run.py:_redirect():2446] Redirects installed.
+2025-11-24 17:15:33,327 INFO    MainThread:148078 [wandb_init.py:init():1076] run started, returning control to user process
+2025-11-26 07:57:16,969 INFO    MainThread:148078 [wandb_run.py:_finish():2272] finishing run pranavlakshman79-lossfunk/space-touch-convex-hull-3phase/8gssmn13
+2025-11-26 07:57:16,972 INFO    MainThread:148078 [wandb_run.py:_atexit_cleanup():2471] got exitcode: 0
+2025-11-26 07:57:16,972 INFO    MainThread:148078 [wandb_run.py:_restore():2453] restore
+2025-11-26 07:57:16,972 INFO    MainThread:148078 [wandb_run.py:_restore():2459] restore done
+2025-11-26 07:57:28,729 INFO    MainThread:148078 [wandb_run.py:_footer_sync_info():3869] logging synced files

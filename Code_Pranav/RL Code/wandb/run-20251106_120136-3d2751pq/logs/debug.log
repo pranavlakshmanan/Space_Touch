@@ -1,0 +1,23 @@
+2025-11-06 12:01:36,793 INFO    MainThread:733036 [wandb_setup.py:_flush():81] Current SDK version is 0.22.1
+2025-11-06 12:01:36,794 INFO    MainThread:733036 [wandb_setup.py:_flush():81] Configure stats pid to 733036
+2025-11-06 12:01:36,794 INFO    MainThread:733036 [wandb_setup.py:_flush():81] Loading settings from /home/pralak/.config/wandb/settings
+2025-11-06 12:01:36,794 INFO    MainThread:733036 [wandb_setup.py:_flush():81] Loading settings from /home/pralak/Space_Touch/Code_Pranav/RL Code/wandb/settings
+2025-11-06 12:01:36,794 INFO    MainThread:733036 [wandb_setup.py:_flush():81] Loading settings from environment variables
+2025-11-06 12:01:36,794 INFO    MainThread:733036 [wandb_init.py:setup_run_log_directory():705] Logging user logs to /home/pralak/Space_Touch/Code_Pranav/RL Code/wandb/run-20251106_120136-3d2751pq/logs/debug.log
+2025-11-06 12:01:36,794 INFO    MainThread:733036 [wandb_init.py:setup_run_log_directory():706] Logging internal logs to /home/pralak/Space_Touch/Code_Pranav/RL Code/wandb/run-20251106_120136-3d2751pq/logs/debug-internal.log
+2025-11-06 12:01:36,794 INFO    MainThread:733036 [wandb_init.py:init():832] calling init triggers
+2025-11-06 12:01:36,794 INFO    MainThread:733036 [wandb_init.py:init():837] wandb.init called with sweep_config: {}
+config: {'algorithm': 'PPO', 'total_timesteps': 1000000, 'checkpoint_frequency': 200000, 'learning_rate': 0.0001, 'n_steps': 4096, 'batch_size': 128, 'max_grad_norm': 0.3, 'ent_coef': 'annealed_0.01_to_0.001', 'n_epochs': 10, 'gamma': 0.99, 'target_position': [0.25, 0.15, 0.35], 'target_physics': 'free_floating_with_mass_0.5kg', 'max_episode_steps': 'adaptive', 'action_space': '10D (6 base + 4 tendons)', 'observation_space': '26D (includes convex_hull_flag)', 'tactile_type': 'binary_contact_with_engulfment_rewards', 'reward_type': 'enhanced_with_tactile_engulfment_and_convex_hull', 'control_smoothing': True, 'filter_cutoff_hz': 15.0, 'jerk_penalty_weight': 0.25, 'acceleration_penalty_weight': 0.15, 'tactile_engulfment_reward_weight': 2.0, 'convex_hull_reward_weight': 5.0, 'success_requires_tactile_contact': True, 'min_fingers_for_success': 2, 'vec_normalize': True, 'notes': 'All improvements: stability, physics, tactile verification, convex hull, test scenarios', '_wandb': {}}
+2025-11-06 12:01:36,794 INFO    MainThread:733036 [wandb_init.py:init():880] starting backend
+2025-11-06 12:01:37,019 INFO    MainThread:733036 [wandb_init.py:init():883] sending inform_init request
+2025-11-06 12:01:37,046 INFO    MainThread:733036 [wandb_init.py:init():891] backend started and connected
+2025-11-06 12:01:37,048 INFO    MainThread:733036 [wandb_init.py:init():961] updated telemetry
+2025-11-06 12:01:37,073 INFO    MainThread:733036 [wandb_init.py:init():985] communicating run to backend with 90.0 second timeout
+2025-11-06 12:01:38,139 INFO    MainThread:733036 [wandb_init.py:init():1036] starting run threads in backend
+2025-11-06 12:01:38,215 INFO    MainThread:733036 [wandb_run.py:_console_start():2506] atexit reg
+2025-11-06 12:01:38,215 INFO    MainThread:733036 [wandb_run.py:_redirect():2354] redirect: wrap_raw
+2025-11-06 12:01:38,215 INFO    MainThread:733036 [wandb_run.py:_redirect():2423] Wrapping output streams.
+2025-11-06 12:01:38,215 INFO    MainThread:733036 [wandb_run.py:_redirect():2446] Redirects installed.
+2025-11-06 12:01:38,216 INFO    MainThread:733036 [wandb_init.py:init():1076] run started, returning control to user process
+2025-11-06 12:01:46,882 INFO    wandb-AsyncioManager-main:733036 [service_client.py:_forward_responses():80] Reached EOF.
+2025-11-06 12:01:46,883 INFO    wandb-AsyncioManager-main:733036 [mailbox.py:close():137] Closing mailbox, abandoning 1 handles.

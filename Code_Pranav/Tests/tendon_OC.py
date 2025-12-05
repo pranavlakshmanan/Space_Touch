@@ -10,8 +10,8 @@ import tacto
 # Tendon-based hand movement with velocity control and reference axis
 
 # ─── PARAMETERS ────────────────────────────────────────────────────────────
-URDF_HAND    = "/home/pranav/Space_touch/examples/allegro_hand_description/allegro_hand_description_left_digit_fixed.urdf"
-URDF_SPHERE  = "/home/pranav/Space_touch/examples/objects/sphere_small.urdf"
+URDF_HAND    = "/home/pralak/Space_Touch/examples/allegro_hand_description/allegro_hand_description_left_digit_fixed.urdf"
+URDF_SPHERE  = "/home/pralak/Space_Touch/examples/objects/sphere_small.urdf"
 
 # Velocity control parameters (replacing torque parameters)
 VELOCITY_GAIN = 2.0         # Base gain for tendon force to velocity conversion

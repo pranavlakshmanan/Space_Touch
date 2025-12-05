@@ -1,0 +1,106 @@
+_wandb:
+    value:
+        cli_version: 0.22.1
+        e:
+            3j8qx6cr0v63o1jcc7ejv7f5xf3utmku:
+                codePath: Code_Pranav/RL Code/V5_ConvexHull_Overlap_Training.py
+                codePathLocal: V5_ConvexHull_Overlap_Training.py
+                cpu_count: 16
+                cpu_count_logical: 32
+                cudaVersion: "12.8"
+                disk:
+                    /:
+                        total: "481576673280"
+                        used: "161563291648"
+                email: pranavlakshman79@gmail.com
+                executable: /home/pralak/miniconda3/envs/space_touch/bin/python
+                git:
+                    commit: adffafd6db5a9439780c98d82f15ddfc0e348b29
+                    remote: https://github.com/pranavlakshmanan/Space_Touch.git
+                gpu: NVIDIA GeForce RTX 5050 Laptop GPU
+                gpu_count: 1
+                gpu_nvidia:
+                    - architecture: Blackwell
+                      cudaCores: 2560
+                      memoryTotal: "8546942976"
+                      name: NVIDIA GeForce RTX 5050 Laptop GPU
+                      uuid: GPU-68c62f0b-bd09-3cbf-f786-d7b42ccdde20
+                host: pop-os
+                memory:
+                    total: "15920721920"
+                os: Linux-6.16.3-76061603-generic-x86_64-with-glibc2.35
+                program: /home/pralak/Space_Touch/Code_Pranav/RL Code/V5_ConvexHull_Overlap_Training.py
+                python: CPython 3.9.23
+                root: /home/pralak/Space_Touch/Code_Pranav/RL Code
+                startedAt: "2025-11-24T11:45:05.277133Z"
+                writerId: 3j8qx6cr0v63o1jcc7ejv7f5xf3utmku
+        m: []
+        python_version: 3.9.23
+        t:
+            "1":
+                - 1
+            "2":
+                - 1
+            "3":
+                - 2
+                - 13
+                - 15
+                - 16
+            "4": 3.9.23
+            "5": 0.22.1
+            "12": 0.22.1
+            "13": linux-x86_64
+action_dim:
+    value: 10
+algorithm:
+    value: PPO
+batch_size:
+    value: 64
+binary_tactile:
+    value: true
+breakthrough:
+    value: spatial_containment_unification
+clip_range:
+    value: 0.2
+curriculum_phases:
+    value: 3
+device:
+    value: cpu
+gae_lambda:
+    value: 0.95
+gamma:
+    value: 0.99
+hull_validation:
+    value: true
+learning_rate:
+    value: 0.0003
+max_episode_steps:
+    value: 500
+n_epochs:
+    value: 10
+n_steps:
+    value: 2048
+object_radius:
+    value: 0.05
+observation_dim:
+    value: 28
+palm_position_fix:
+    value: true
+phase1_max_steps:
+    value: 300000
+phase2_max_steps:
+    value: 350000
+phase3_max_steps:
+    value: 350000
+previous_versions:
+    value:
+        - SC-1
+        - V2
+        - V3
+        - V4
+safety_first:
+    value: true
+safety_margin:
+    value: 0.025
+total_timesteps:
+    value: 1000000

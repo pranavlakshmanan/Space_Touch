@@ -1,0 +1,21 @@
+2025-12-01 13:46:08,694 INFO    MainThread:19258 [wandb_setup.py:_flush():81] Current SDK version is 0.22.1
+2025-12-01 13:46:08,694 INFO    MainThread:19258 [wandb_setup.py:_flush():81] Configure stats pid to 19258
+2025-12-01 13:46:08,694 INFO    MainThread:19258 [wandb_setup.py:_flush():81] Loading settings from /home/pralak/.config/wandb/settings
+2025-12-01 13:46:08,694 INFO    MainThread:19258 [wandb_setup.py:_flush():81] Loading settings from /home/pralak/Space_Touch/Code_Pranav/RL Code/wandb/settings
+2025-12-01 13:46:08,694 INFO    MainThread:19258 [wandb_setup.py:_flush():81] Loading settings from environment variables
+2025-12-01 13:46:08,694 INFO    MainThread:19258 [wandb_init.py:setup_run_log_directory():705] Logging user logs to /home/pralak/Space_Touch/Code_Pranav/RL Code/wandb/run-20251201_134608-6k35t9ne/logs/debug.log
+2025-12-01 13:46:08,694 INFO    MainThread:19258 [wandb_init.py:setup_run_log_directory():706] Logging internal logs to /home/pralak/Space_Touch/Code_Pranav/RL Code/wandb/run-20251201_134608-6k35t9ne/logs/debug-internal.log
+2025-12-01 13:46:08,694 INFO    MainThread:19258 [wandb_init.py:init():832] calling init triggers
+2025-12-01 13:46:08,694 INFO    MainThread:19258 [wandb_init.py:init():837] wandb.init called with sweep_config: {}
+config: {'total_timesteps': 200000, 'algorithm': 'PPO', 'curriculum_phases': 4, 'observation_dim': 28, 'action_dim': 10, 'position_control': True, 'hull_points_hand': 9, 'hull_points_object': 32, 'overlap_method': 'bbox_fast', 'phase_0_steps': 30000, 'phase_1_steps': 60000, 'phase_2_steps': 70000, 'phase_3_steps': 40000, '_wandb': {}}
+2025-12-01 13:46:08,694 INFO    MainThread:19258 [wandb_init.py:init():880] starting backend
+2025-12-01 13:46:08,920 INFO    MainThread:19258 [wandb_init.py:init():883] sending inform_init request
+2025-12-01 13:46:08,942 INFO    MainThread:19258 [wandb_init.py:init():891] backend started and connected
+2025-12-01 13:46:08,945 INFO    MainThread:19258 [wandb_init.py:init():961] updated telemetry
+2025-12-01 13:46:08,964 INFO    MainThread:19258 [wandb_init.py:init():985] communicating run to backend with 90.0 second timeout
+2025-12-01 13:46:09,910 INFO    MainThread:19258 [wandb_init.py:init():1036] starting run threads in backend
+2025-12-01 13:46:09,979 INFO    MainThread:19258 [wandb_run.py:_console_start():2506] atexit reg
+2025-12-01 13:46:09,979 INFO    MainThread:19258 [wandb_run.py:_redirect():2354] redirect: wrap_raw
+2025-12-01 13:46:09,979 INFO    MainThread:19258 [wandb_run.py:_redirect():2423] Wrapping output streams.
+2025-12-01 13:46:09,979 INFO    MainThread:19258 [wandb_run.py:_redirect():2446] Redirects installed.
+2025-12-01 13:46:09,981 INFO    MainThread:19258 [wandb_init.py:init():1076] run started, returning control to user process

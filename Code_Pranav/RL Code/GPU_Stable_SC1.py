@@ -412,7 +412,7 @@ class TendonAllegroReachingEnv(VecEnv):
                  num_envs=1,
                  vis=False,
                  max_steps=300,  # Reduced from 500
-                 urdf_hand="/home/pralak/Space_touch/examples/allegro_hand_description/allegro_hand_description_left_digit_fixed.urdf",
+                 urdf_hand="/home/pralak/Space_Touch/examples/allegro_hand_description/allegro_hand_description_left_digit_fixed.urdf",
                  target_range=0.3):
         
         self.num_envs = num_envs

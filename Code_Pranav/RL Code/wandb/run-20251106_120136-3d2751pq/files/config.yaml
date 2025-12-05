@@ -1,0 +1,111 @@
+_wandb:
+    value:
+        cli_version: 0.22.1
+        e:
+            e7abwhbmqngv3himxa1a68j1dzuk2osl:
+                args:
+                    - --help
+                codePath: Code_Pranav/RL Code/Wandb_SC-1_Enhanced_V2.py
+                codePathLocal: Wandb_SC-1_Enhanced_V2.py
+                cpu_count: 16
+                cpu_count_logical: 32
+                cudaVersion: "12.8"
+                disk:
+                    /:
+                        total: "481576673280"
+                        used: "135579643904"
+                email: pranavlakshman79@gmail.com
+                executable: /home/pralak/miniconda3/envs/space_touch/bin/python
+                git:
+                    commit: adffafd6db5a9439780c98d82f15ddfc0e348b29
+                    remote: https://github.com/pranavlakshmanan/Space_Touch.git
+                gpu: NVIDIA GeForce RTX 5050 Laptop GPU
+                gpu_count: 1
+                gpu_nvidia:
+                    - architecture: Blackwell
+                      cudaCores: 2560
+                      memoryTotal: "8546942976"
+                      name: NVIDIA GeForce RTX 5050 Laptop GPU
+                      uuid: GPU-68c62f0b-bd09-3cbf-f786-d7b42ccdde20
+                host: pop-os
+                memory:
+                    total: "15920713728"
+                os: Linux-6.16.3-76061603-generic-x86_64-with-glibc2.35
+                program: /home/pralak/Space_Touch/Code_Pranav/RL Code/Wandb_SC-1_Enhanced_V2.py
+                python: CPython 3.9.23
+                root: /home/pralak/Space_Touch/Code_Pranav/RL Code
+                startedAt: "2025-11-06T06:31:36.792355Z"
+                writerId: e7abwhbmqngv3himxa1a68j1dzuk2osl
+        m: []
+        python_version: 3.9.23
+        t:
+            "1":
+                - 1
+            "2":
+                - 1
+            "3":
+                - 13
+                - 15
+                - 16
+                - 61
+            "4": 3.9.23
+            "5": 0.22.1
+            "12": 0.22.1
+            "13": linux-x86_64
+acceleration_penalty_weight:
+    value: 0.15
+action_space:
+    value: 10D (6 base + 4 tendons)
+algorithm:
+    value: PPO
+batch_size:
+    value: 128
+checkpoint_frequency:
+    value: 200000
+control_smoothing:
+    value: true
+convex_hull_reward_weight:
+    value: 5
+ent_coef:
+    value: annealed_0.01_to_0.001
+filter_cutoff_hz:
+    value: 15
+gamma:
+    value: 0.99
+jerk_penalty_weight:
+    value: 0.25
+learning_rate:
+    value: 0.0001
+max_episode_steps:
+    value: adaptive
+max_grad_norm:
+    value: 0.3
+min_fingers_for_success:
+    value: 2
+n_epochs:
+    value: 10
+n_steps:
+    value: 4096
+notes:
+    value: 'All improvements: stability, physics, tactile verification, convex hull, test scenarios'
+observation_space:
+    value: 26D (includes convex_hull_flag)
+reward_type:
+    value: enhanced_with_tactile_engulfment_and_convex_hull
+success_requires_tactile_contact:
+    value: true
+tactile_engulfment_reward_weight:
+    value: 2
+tactile_type:
+    value: binary_contact_with_engulfment_rewards
+target_physics:
+    value: free_floating_with_mass_0.5kg
+target_position:
+    value:
+        - 0.25
+        - 0.15
+        - 0.35
+total_timesteps:
+    value: 1000000
+vec_normalize:
+    value: true

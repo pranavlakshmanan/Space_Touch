@@ -1,0 +1,58 @@
+
+Creating enhanced environment with all improvements...
+✓ Control smoothing enabled (cutoff: 15.0 Hz)
+✓ Hand loaded from: /home/pralak/Space_Touch/examples/allegro_hand_description/allegro_hand_description_left_digit_fixed.urdf
+✓ Binary tactile sensing enabled on 4 fingertips
+✓ Adaptive episode length enabled
+  Initial distance: 0.292m
+  Adaptive max steps: 448
+Setting up enhanced PPO model...
+✓ GPU acceleration enabled: NVIDIA GeForce RTX 5050 Laptop GPU
+✓ Creating new enhanced model with improved hyperparameters
+Using cuda device
+/home/pralak/miniconda3/envs/space_touch/lib/python3.9/site-packages/stable_baselines3/common/on_policy_algorithm.py:150: UserWarning: You are trying to run PPO on the GPU, but it is primarily intended to run on the CPU when not using a CNN policy (you are using ActorCriticPolicy which should be a MlpPolicy). See https://github.com/DLR-RM/stable-baselines3/issues/1245 for more info. You can pass `device='cpu'` or `export CUDA_VISIBLE_DEVICES=` to force using the CPU.Note: The model will train, but the GPU utilization will be poor and the training might take longer than on CPU.
+  warnings.warn(
+
+================================================================================
+ENHANCED SC-1 V2 TRAINING CONFIGURATION
+================================================================================
+Log Directory: SC1_Training_Runs/Run_20251106_120135_SC1_Enhanced_V2
+Checkpoint Directory: SC1_Training_Runs/Run_20251106_120135_SC1_Enhanced_V2/checkpoints
+WandB Project: space-touch-sc1-enhanced-v2
+Target Physics: Free-floating with 0.5kg mass
+Total Training Timesteps: 1,000,000
+Checkpoint Frequency: Every 200,000 timesteps
+Starting Timestep: 0
+Action Space: 10D (6 base movement + 4 tendon forces)
+Observation Space: 26D (base + target + fingers + tactile + hull)
+
+ALL ENHANCEMENTS ACTIVE:
+  ✓ PRIORITY 1: Training stability (LR 1e-4, batch 128, grad clip 0.3)
+  ✓ PRIORITY 2: Proper environment reset (always recreate bodies in test)
+  ✓ PRIORITY 3: Tactile engulfment verification (multi-finger rewards)
+  ✓ PRIORITY 4: Free-floating target with realistic physics (0.5kg mass)
+  ✓ PRIORITY 5: Comprehensive test scenarios (6 different conditions)
+  ✓ PRIORITY 6: Convex hull engulfment metric (spatial containment)
+  ✓ Enhanced reward normalization with VecNormalize
+  ✓ Learning rate and entropy coefficient annealing
+  ✓ Success requires tactile contact (2+ fingers)
+  ✓ Momentum conservation checks (penalty for pushing target)
+================================================================================
+
+Starting enhanced training from iteration 1
+Current timestep: 0
+Target timesteps: 1000000
+
+============================================================
+ITERATION 1: Training 200,000 timesteps
+Progress: 0 -> 200,000 / 1,000,000
+Completion: 20.0%
+============================================================
+
+Error occurred: unsupported operand type(s) for *: 'function' and 'Tensor'
+Traceback (most recent call last):
+  File "/home/pralak/Space_Touch/Code_Pranav/RL Code/Wandb_SC-1_Enhanced_V2.py", line 1616, in main
+    model.learn(
+  File "/home/pralak/miniconda3/envs/space_touch/lib/python3.9/site-packages/stable_baselines3/ppo/ppo.py", line 311, in learn
+    return super().learn(
+Environment closed.

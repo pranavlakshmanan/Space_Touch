@@ -1,0 +1,41 @@
+{
+  "os":  "Linux-6.16.3-76061603-generic-x86_64-with-glibc2.35",
+  "python":  "CPython 3.9.23",
+  "startedAt":  "2025-11-06T06:39:37.877424Z",
+  "args":  [
+    "1"
+  ],
+  "program":  "<python with no main file>",
+  "git":  {
+    "remote":  "https://github.com/pranavlakshmanan/Space_Touch.git",
+    "commit":  "adffafd6db5a9439780c98d82f15ddfc0e348b29"
+  },
+  "email":  "pranavlakshman79@gmail.com",
+  "root":  "/home/pralak/Space_Touch/Code_Pranav/RL Code",
+  "host":  "pop-os",
+  "executable":  "/home/pralak/miniconda3/envs/space_touch/bin/python",
+  "cpu_count":  16,
+  "cpu_count_logical":  32,
+  "gpu":  "NVIDIA GeForce RTX 5050 Laptop GPU",
+  "gpu_count":  1,
+  "disk":  {
+    "/":  {
+      "total":  "481576673280",
+      "used":  "135587045376"
+    }
+  },
+  "memory":  {
+    "total":  "15920713728"
+  },
+  "gpu_nvidia":  [
+    {
+      "name":  "NVIDIA GeForce RTX 5050 Laptop GPU",
+      "memoryTotal":  "8546942976",
+      "cudaCores":  2560,
+      "architecture":  "Blackwell",
+      "uuid":  "GPU-68c62f0b-bd09-3cbf-f786-d7b42ccdde20"
+    }
+  ],
+  "cudaVersion":  "12.8",
+  "writerId":  "zr7ntvtqdolngtkgbckvjr7xfc4ig4a5"
+}

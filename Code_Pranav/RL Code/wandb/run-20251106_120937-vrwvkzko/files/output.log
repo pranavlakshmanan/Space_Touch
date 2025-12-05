@@ -1,0 +1,82 @@
+
+Creating enhanced environment with all improvements...
+✓ Control smoothing enabled (cutoff: 15.0 Hz)
+✓ Hand loaded from: /home/pralak/Space_Touch/examples/allegro_hand_description/allegro_hand_description_left_digit_fixed.urdf
+✓ Binary tactile sensing enabled on 4 fingertips
+✓ Adaptive episode length enabled
+  Initial distance: 0.295m
+  Adaptive max steps: 452
+Setting up enhanced PPO model...
+✓ GPU acceleration enabled: NVIDIA GeForce RTX 5050 Laptop GPU
+✓ Creating new enhanced model with improved hyperparameters
+Using cuda device
+/home/pralak/miniconda3/envs/space_touch/lib/python3.9/site-packages/stable_baselines3/common/on_policy_algorithm.py:150: UserWarning: You are trying to run PPO on the GPU, but it is primarily intended to run on the CPU when not using a CNN policy (you are using ActorCriticPolicy which should be a MlpPolicy). See https://github.com/DLR-RM/stable-baselines3/issues/1245 for more info. You can pass `device='cpu'` or `export CUDA_VISIBLE_DEVICES=` to force using the CPU.Note: The model will train, but the GPU utilization will be poor and the training might take longer than on CPU.
+  warnings.warn(
+
+================================================================================
+ENHANCED SC-1 V2 TRAINING CONFIGURATION
+================================================================================
+Log Directory: SC1_Training_Runs/Run_20251106_120937_SC1_Enhanced_V2
+Checkpoint Directory: SC1_Training_Runs/Run_20251106_120937_SC1_Enhanced_V2/checkpoints
+WandB Project: space-touch-sc1-enhanced-v2
+Target Physics: Free-floating with 0.5kg mass
+Total Training Timesteps: 250,000
+Checkpoint Frequency: Every 50,000 timesteps
+Starting Timestep: 0
+Action Space: 10D (6 base movement + 4 tendon forces)
+Observation Space: 26D (base + target + fingers + tactile + hull)
+
+ALL ENHANCEMENTS ACTIVE:
+  ✓ PRIORITY 1: Training stability (LR 1e-4, batch 128, grad clip 0.3)
+  ✓ PRIORITY 2: Proper environment reset (always recreate bodies in test)
+  ✓ PRIORITY 3: Tactile engulfment verification (multi-finger rewards)
+  ✓ PRIORITY 4: Free-floating target with realistic physics (0.5kg mass)
+  ✓ PRIORITY 5: Comprehensive test scenarios (6 different conditions)
+  ✓ PRIORITY 6: Convex hull engulfment metric (spatial containment)
+  ✓ Enhanced reward normalization with VecNormalize
+  ✓ Learning rate and entropy coefficient annealing
+  ✓ Success requires tactile contact (2+ fingers)
+  ✓ Momentum conservation checks (penalty for pushing target)
+================================================================================
+
+Starting enhanced training from iteration 1
+Current timestep: 0
+Target timesteps: 250000
+
+============================================================
+ITERATION 1: Training 50,000 timesteps
+Progress: 0 -> 50,000 / 250,000
+Completion: 20.0%
+============================================================
+------------------------------------------
+| rollout/                |              |
+|    ep_len_mean          | 382          |
+|    ep_rew_mean          | -523         |
+| time/                   |              |
+|    fps                  | 536          |
+|    iterations           | 10           |
+|    time_elapsed         | 76           |
+|    total_timesteps      | 40960        |
+| train/                  |              |
+|    approx_kl            | 0.0066500707 |
+|    clip_fraction        | 0.0395       |
+|    clip_range           | 0.2          |
+|    entropy_loss         | -14.3        |
+|    explained_variance   | 0.532        |
+|    learning_rate        | 0.0001       |
+|    loss                 | -0.084       |
+|    n_updates            | 90           |
+|    policy_gradient_loss | -0.0112      |
+|    std                  | 1.01         |
+|    value_loss           | 0.144        |
+------------------------------------------
+✓ Checkpoint saved at 50000 timesteps: SC1_Training_Runs/Run_20251106_120937_SC1_Enhanced_V2/checkpoints/checkpoint_50000.zip
+ 100% ━━━━━━━━━━━━━━━━━━━━━━━━━━ 53,248/50,000  [ 0:01:34 < 0:00:00 , 525 it/s ]
+✓ Iteration 1 complete! Checkpoint saved: SC1_Training_Runs/Run_20251106_120937_SC1_Enhanced_V2/checkpoints/checkpoint_50000.zip
+
+============================================================
+ITERATION 2: Training 50,000 timesteps
+Progress: 50,000 -> 100,000 / 250,000
+Completion: 40.0%
+============================================================
+wandb: WARNING Tried to log to step 50000 that is less than the current step 53200. Steps must be monotonically increasing, so this data will be ignored. See https://wandb.me/define-metric to log data out of order.
