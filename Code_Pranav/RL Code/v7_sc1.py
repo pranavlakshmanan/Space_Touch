@@ -656,6 +656,10 @@ class V7CurriculumCallback(BaseCallback):
     
     def _check_phase_transition(self):
         """Check if performance criteria met to advance phase"""
+        # V7.2: Disable phase transitions beyond Phase 1
+        if self.current_phase >= 1:
+            return
+
         if self.current_phase >= 3:
             return
 
@@ -827,9 +831,9 @@ def create_model(env, device='cuda', learning_rate=3e-4):
 
 
 def train(args):
-    """Main V7 training function - optimized for 200K steps"""
+    """Main V7.2 training function - Phase 1 only (no phase transition)"""
     timestamp = datetime.now().strftime('%Y%m%d_%H%M%S')
-    run_name = f"V7_SC1_{timestamp}"
+    run_name = f"V7.2_SC1_{timestamp}"
     log_dir = Path(f"SC1_Training_Runs/{run_name}")
     log_dir.mkdir(parents=True, exist_ok=True)
     checkpoint_dir = log_dir / "checkpoints"
@@ -839,10 +843,11 @@ def train(args):
         project="sc1-v7-curriculum",
         name=run_name,
         config={
-            'version': 'V7.1',
+            'version': 'V7.2',
+            'experiment': 'phase1_only_no_transition',
             'total_timesteps': args.timesteps,
             'algorithm': 'PPO',
-            'curriculum_phases': 4,  # Phase 0-3
+            'curriculum_phases': 1,  # V7.2: Stay in Phase 1 only
             'observation_dim': 28,
             'action_dim': 10,
             'position_control': True,
@@ -850,30 +855,30 @@ def train(args):
             'hull_points_object': 32,
             'overlap_method': 'bbox_fast',
             'phase_0_steps': 30000,
-            'phase_1_steps': 60000,
-            'phase_2_steps': 90000,  # V7.1: Extended from 70K
-            'phase_3_steps': 20000,  # V7.1: Reduced (total still 200K)
-            # V7.1 Hyperparameters
+            'phase_1_steps': 170000,  # V7.2: All remaining steps in Phase 1
+            'phase_2_steps': 0,  # V7.2: Disabled
+            'phase_3_steps': 0,  # V7.2: Disabled
+            # V7.1 Hyperparameters (unchanged)
             'learning_rate_phase_01': 3e-4,
-            'learning_rate_phase_23': 1e-4,  # Adaptive LR
-            'n_steps': 4096,  # Increased from 2048
-            'ent_coef': 0.005,  # Increased from 0.001
-            'hull_compute_freq_hz': 20,  # Increased from 10Hz
-            'distance_termination_m': 0.20,  # Tightened from 0.25m
-            # V7.1 Reward changes
-            'phase2_proximity_weight': 10.0,  # Added baseline (was 0.0)
-            'phase1_contact_penalty': -5.0,  # Strengthened from -2.0
-            'phase2_contact_penalty': -10.0,  # Strengthened from -5.0
-            'phase2_quality_weight': 5.0,  # Increased from 3.0
-            'overlap_tanh_scale': 75.0,  # Increased from 50.0
+            'learning_rate_phase_23': 1e-4,  # Won't be used
+            'n_steps': 4096,
+            'ent_coef': 0.005,
+            'hull_compute_freq_hz': 20,
+            'distance_termination_m': 0.20,
+            # Phase 1 reward config (used throughout training)
+            'phase1_proximity_weight': 50.0,
+            'phase1_overlap_weight': 20.0,
+            'phase1_contact_penalty': -5.0,
+            'phase1_quality_weight': 1.0,
         },
-        tags=['v7.1', 'soft-capture', 'improved-curriculum', 'adaptive-lr', 'proximity-baseline'],
+        tags=['v7.2', 'soft-capture', 'phase1-only', 'no-phase-transition'],
     )
 
-    print(f"Starting V7.1 training: {run_name}")
+    print(f"Starting V7.2 training: {run_name}")
     print(f"  Total steps: {args.timesteps:,}")
-    print(f"  Curriculum: Phase0(30K) → Phase1(60K) → Phase2(90K) → Phase3(20K)")
-    print(f"  Key V7.1 changes: Proximity baseline in Phase 2, Adaptive LR, Increased exploration")
+    print(f"  Experiment: Phase 1 ONLY (no phase transition)")
+    print(f"  Curriculum: Phase0(30K) → Phase1(170K, NO TRANSITION)")
+    print(f"  Phase 1 config: Proximity=50, Overlap=20, Contact=-5.0")
     print(f"  Log dir: {log_dir}")
 
     env = V7Environment(vis=args.vis, max_steps=500)
