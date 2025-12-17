@@ -1,0 +1,52 @@
+nohup: ignoring input
+pybullet build time: Dec  5 2025 10:37:09
+wandb: Currently logged in as: pranavlakshman79 (pranavlakshman79-lossfunk) to https://api.wandb.ai. Use `wandb login --relogin` to force relogin
+wandb: Tracking run with wandb version 0.23.1
+wandb: Run data is saved locally in /home/ubuntu/workspace/Space_Touch/wandb/wandb/run-20251215_080017-1tbw71h4
+wandb: Run `wandb offline` to turn off syncing.
+wandb: Syncing run V7.4_SC1_20251215_080017
+wandb: ⭐️ View project at https://wandb.ai/pranavlakshman79-lossfunk/sc1-v7-curriculum
+wandb: 🚀 View run at https://wandb.ai/pranavlakshman79-lossfunk/sc1-v7-curriculum/runs/1tbw71h4
+CWD set to: /home/ubuntu/workspace
+Starting V7.4 training: V7.4_SC1_20251215_080017
+  Total steps: 50,000
+  Reward system: HYBRID (derivative + distance, 90:10 ratio)
+  Observation space: 32D (28D + smoothed overlap + relative distance)
+  PRIMARY: Derivative overlap (±100 reward)
+  SECONDARY: Distance reward (0-10 reward)
+  Contact penalty: -1 (far) to -5 (close), distance-scaled
+  Log dir: SC1_Training_Runs/V7.4_SC1_20251215_080017
+ 100% ━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 53,248/50,000  [ 1:54:34 < 0:00:00 , 2 it/s ]
+wandb: updating run metadata
+wandb: 
+wandb: Run history:
+wandb:    hull/delta_overlap_cm3 ▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▅▁▁▁▃█▁▁▁▁▂▃▁▁▁▁▁▁
+wandb:      hull/hand_volume_cm3 ▃▂▅▄▅▃▄▄▆▂▄▅▁▇▃▅▁▃▄▃▅▃▃▄▅▃▆▄▁█▅▂▂▂▅▁▄▃▃▅
+wandb:    hull/object_volume_cm3 ▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁
+wandb:          hull/overlap_cm3 █▁▁▁▁▁▁▁▃▁▅▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁
+wandb:    reward/contact_penalty ▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁
+wandb:      reward/delta_overlap █▁▁▁▁▁▁▁▁▁▁▁▁▃▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁
+wandb:          reward/proximity █▄▃▃▇█▇▇▃▂▂█▇▇▃▃▇▇▇▃▇▇▇▄▃▂▅█▃▃▃▄▇█▃▃▂▃▁▇
+wandb:      reward/sustain_bonus █▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁█▁▁▁▁▁▁▁▁▁▁
+wandb:              reward/total ▂▁▃▃▃▁▃▁▃▃▃█▃▂▁▂▃▂▃▃▃▃▂▅▂▁▁▂▂▁▂▂▃▃▃▂▃▁▁▁
+wandb: state/consecutive_success ▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁█▁▁▁▁▁▁▁▁▁▁▁▁
+wandb:                        +7 ...
+wandb: 
+wandb: Run summary:
+wandb: hull/delta_overlap_cm3 0
+wandb:   hull/hand_volume_cm3 1103.1374
+wandb: hull/object_volume_cm3 1622.87887
+wandb:       hull/overlap_cm3 0
+wandb: reward/contact_penalty 0
+wandb:   reward/delta_overlap 0
+wandb:       reward/proximity 3.47453
+wandb:   reward/sustain_bonus 0
+wandb:           reward/total 3.47453
+wandb: state/bootstrap_active False
+wandb:                     +8 ...
+wandb: 
+wandb: 🚀 View run V7.4_SC1_20251215_080017 at: https://wandb.ai/pranavlakshman79-lossfunk/sc1-v7-curriculum/runs/1tbw71h4
+wandb: ⭐️ View project at: https://wandb.ai/pranavlakshman79-lossfunk/sc1-v7-curriculum
+wandb: Synced 5 W&B file(s), 0 media file(s), 0 artifact file(s) and 0 other file(s)
+wandb: Find logs at: ./Space_Touch/wandb/wandb/run-20251215_080017-1tbw71h4/logs
+Training complete. Model saved to: SC1_Training_Runs/V7.4_SC1_20251215_080017/final_model.zip

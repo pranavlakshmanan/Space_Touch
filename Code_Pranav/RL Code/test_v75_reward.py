@@ -6,7 +6,7 @@ import sys
 import os
 
 # Add parent directory to path
-sys.path.insert(0, '/home/pralak/Space_Touch')
+sys.path.insert(0, '/home/ubuntu/workspace/Space_Touch')
 from reward_functions.v7_5_reward import V75RewardCalculator
 
 

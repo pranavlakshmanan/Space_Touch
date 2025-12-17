@@ -158,7 +158,7 @@ class V76Environment(VecEnv):
     def __init__(self, 
                  vis=False, 
                  max_steps=500,
-                 urdf_path="/home/pralak/Space_Touch/examples/allegro_hand_description/allegro_hand_description_left_digit_fixed.urdf"):
+                 urdf_path="/home/ubuntu/workspace/Space_Touch/examples/allegro_hand_description/allegro_hand_description_left_digit_fixed.urdf"):
         
         self.vis = vis
         self.max_steps = max_steps
@@ -179,7 +179,7 @@ class V76Environment(VecEnv):
             'object_radius': 0.05,
             'safety_margin': 0.025,
             # Distance reward (PRIMARY)
-            'distance_improvement_scale': 100.0,
+            'distance_improvement_scale': 300.0,
             'distance_regression_scale': 100.0,
             # Overlap reward (SECONDARY - only when close)
             'overlap_activation_distance': 0.08,    # 8cm
@@ -189,7 +189,7 @@ class V76Environment(VecEnv):
             'sustain_threshold': 0.00001,  # 10 cm³
             'sustain_bonus': 1.0,
             # Contact penalty
-            'contact_penalty': -2.0,
+            'contact_penalty': -0.5,
             # Smoothing
             'overlap_ema_alpha': 0.1,
         })
@@ -493,7 +493,12 @@ class V76Environment(VecEnv):
         action = self._actions[0]
         
         self._apply_action(action)
+        # Save commanded position before physics
+        commanded_pos, commanded_orn = p.getBasePositionAndOrientation(self.hand_id)
         p.stepSimulation()
+        # Re-lock base to commanded position (simulates rigid arm mount)
+        p.resetBasePositionAndOrientation(self.hand_id, commanded_pos, commanded_orn)
+        p.resetBaseVelocity(self.hand_id, [0, 0, 0], [0, 0, 0])
         
         obs = self._get_observation()
         reward, info = self._calculate_reward(obs)
@@ -794,10 +799,10 @@ def train(args):
             # Reward structure
             'primary_reward': 'palm_distance_derivative',
             'secondary_reward': 'overlap_derivative',
-            'distance_improvement_scale': 100.0,
+            'distance_improvement_scale': 300.0,
             'overlap_improvement_scale': 10000.0,
             'overlap_activation_distance_cm': 8.0,
-            'contact_penalty': -2.0,
+            'contact_penalty': -0.5,
             # Curriculum
             'phase1_spawn_distance_cm': 3.6,
             'phase2_spawn_distance_cm': 5.8,

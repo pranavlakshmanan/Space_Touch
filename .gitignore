@@ -6,3 +6,6 @@ wandb/
 *.csv
 *.h5
 
+venv_train/
+venv_train/
+SC1_Training_Runs/

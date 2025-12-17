@@ -141,7 +141,7 @@ class V7Environment(VecEnv):
     def __init__(self, 
                  vis=False, 
                  max_steps=500,
-                 urdf_path="/home/pralak/Space_Touch/examples/allegro_hand_description/allegro_hand_description_left_digit_fixed.urdf"):
+                 urdf_path="/home/ubuntu/workspace/Space_Touch/examples/allegro_hand_description/allegro_hand_description_left_digit_fixed.urdf"):
         
         self.vis = vis
         self.max_steps = max_steps

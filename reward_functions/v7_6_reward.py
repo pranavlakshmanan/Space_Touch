@@ -45,7 +45,7 @@ class V76RewardCalculator:
         self.current_phase = 1
 
         # Distance reward parameters
-        self.distance_improvement_scale = config.get('distance_improvement_scale', 100.0)
+        self.distance_improvement_scale = config.get('distance_improvement_scale', 500.0)
         self.distance_regression_scale = config.get('distance_regression_scale', 100.0)  # Symmetric
 
         # Overlap reward parameters (only active when close)
@@ -58,7 +58,7 @@ class V76RewardCalculator:
         self.sustain_bonus = config.get('sustain_bonus', 1.0)
 
         # Contact penalty
-        self.contact_penalty = config.get('contact_penalty', -2.0)
+        self.contact_penalty = config.get('contact_penalty', -0.5)
 
         # State tracking
         self.previous_distance = None
